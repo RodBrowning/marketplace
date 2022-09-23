@@ -2,7 +2,7 @@ $primary: #FF6D03;
 $secondary: #FFAB00;
 $tertiary: #F2290C;
 $quaternary: #FC4E0D;
-$gradient: linear(to right, $primary, $secondary);
+$gradient: linear-gradient(to right, $primary, $secondary);
 $black: rgba(21, 15, 2, 1);
 $black-75: rgba(21, 15, 2, .75);
 $black-50: rgba(21, 15, 2, .50);
