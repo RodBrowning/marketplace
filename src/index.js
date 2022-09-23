@@ -1,3 +1,4 @@
+import Product, { loader as productLoader } from './pages/product';
 import {
   Route,
   RouterProvider,
@@ -6,7 +7,6 @@ import {
 
 import App from './App';
 import Cart from './pages/cart';
-import Product from './pages/product';
 import Products from './pages/products';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
     {
       path: "product/:id",
       element: <Product />,
+      loader: productLoader,
     },
     {
       path: "cart",
