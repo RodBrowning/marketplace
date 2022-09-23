@@ -1,0 +1,6 @@
+@use './style/mainStyle.scss' as mainStyle;
+
+main {
+    font-family: 'Monoton';
+    color: mainStyle.$black;
+}

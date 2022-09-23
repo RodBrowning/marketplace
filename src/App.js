@@ -1,5 +1,6 @@
-import './test.scss';
+import './index.scss';
 
+import Header from './components/header';
 import pictureA from './a.jpg';
 import pictureB from './b.jpg';
 
@@ -10,17 +11,7 @@ function cartItems() {
 function App() {
   return (
     <main>
-      <header>
-        90s shop
-        <nav>
-          <ul style={{listStyleType: 'none', display: 'flex'}}>
-            <li><a href="/">Home</a></li>
-            |
-            <li><a href="/cart">Cart ({cartItems().length})</a></li>
-          </ul>
-        </nav>
-        <hr/>
-      </header>
+      <Header />
 
       {
         window.location.pathname === '/' && (
