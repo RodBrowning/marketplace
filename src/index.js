@@ -1,12 +1,41 @@
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
+
+import App from './App';
+import Cart from './pages/cart';
+import Product from './pages/product';
+import Products from './pages/products';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: 
+    [{
+      path: "/",
+      element: <Products />,
+    },
+    {
+      path: "product/:id",
+      element: <Product />,
+    },
+    {
+      path: "cart",
+      element: <Cart />,
+    }]
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+  <RouterProvider router={router} />
   </React.StrictMode>
 );
 

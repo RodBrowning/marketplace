@@ -1,5 +1,7 @@
-import './syle.scss';
+import './style.scss';
 import './style-mobile.scss';
+
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     
@@ -14,13 +16,13 @@ const Header = () => {
             </div>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
+                    <li><Link to={"/"}>Home</Link></li>
                     <li>
-                        <a href="/cart">
+                        <Link to={"/cart"}>
                             <span>
                                 Cart ({cartItems().length})
                             </span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>
