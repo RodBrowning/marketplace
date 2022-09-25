@@ -1,19 +1,33 @@
 @use '../../style/mainStyle.scss' as mainStyle;
 
-$small: 425px;
+$large: 1040px;
 $medium: 768px;
+$small: 425px;
 
+@media screen and (max-width: $large) {
+    #products-section {
+        .products {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+}
 @media screen and (max-width: $medium) {
     #products-section {
         width: 100%;
-        .products {
+        .section-title {
+            margin-bottom: 0px;
+        }
+        .products, .products.horizontal-cards {
+            margin: unset;
+            max-width: unset;
             grid-template-columns: repeat(2, 1fr);
         }
     }
 }
 @media screen and (max-width: $small) {
     #products-section {
-        .products {
+        .products, .products.horizontal-cards {
             grid-template-columns: repeat(1, 1fr);
         }
     }

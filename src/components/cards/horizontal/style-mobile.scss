@@ -1,0 +1,17 @@
+$large: 1040px;
+$medium: 768px;
+$small: 425px;
+
+@media screen and (max-width: $large) {
+    #horizontal-card {
+        flex-direction: column-reverse;
+        gap: 0;
+        .image {
+            img {
+                border-radius: 10px 10px 0 0;
+            }
+        }
+    }
+}
+
+    

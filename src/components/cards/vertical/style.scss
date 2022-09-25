@@ -1,6 +1,6 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
 
-#card-vertical {
+#vertical-card {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -104,37 +104,39 @@
                 svg.card-icon {
                     background-color: mainStyle.$secondary;
                     animation-name: blink-div;
+                    animation-timing-function: ease-in;
                     animation-duration: .55s;
                     animation-iteration-count: infinite;
-                    animation-direction: alternate-reverse;
+                    animation-direction: alternate;
                     path {
                         fill: white;
                         animation-name: blink-card-svg;
                         animation-duration: .55s;
+                        animation-timing-function: ease-in;
                         animation-iteration-count: infinite;
-                        animation-direction: alternate-reverse;
+                        animation-direction: alternate;
                         @keyframes blink-card-svg {
                             0% {
-                                fill: white;
+                                fill: mainStyle.$secondary;
                             }
                             100% {
-                                fill: mainStyle.$secondary;
+                                fill: white;
                             }
                         }
                     }
                     @keyframes blink-div {
                         0% {
-                            background-color: mainStyle.$secondary;
+                            background-color: white;
                         }
                         100% {
-                            background-color: white;
+                            background-color: mainStyle.$secondary;
                         }
                     }
                 }
             }
             svg.card-icon {
                 display: inline-block;
-                width: 80px;
+                width: 165px;
                 height: 20px;
                 background-color: white;
                 padding: 3px 0;
@@ -146,6 +148,9 @@
                     fill: mainStyle.$primary;
                     transition: all .15s ease-in-out;
                 }
+            }
+            span {
+                width: 100%;
             } 
         }
     }

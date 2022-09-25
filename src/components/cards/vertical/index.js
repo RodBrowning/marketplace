@@ -1,21 +1,16 @@
 import './style.scss';
 import './style-mobile.scss';
 
+import { numToCurrency, truncateString } from '../../../utils/utils';
 import { useEffect, useState } from 'react';
 
-import imgA from '../../../a.jpg';
 import parse from 'html-react-parser';
-import {truncateString} from '../../../utils/utils';
-
-const numToCurrency = (number) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);
-}
 
 const getPercentage = (price, oldPrice) => {
     return (price * 100) / oldPrice;
 }
 
-const VerticalCard = ({brand, title, price, oldPrice, shortDesc, shipping}) => {
+const VerticalCard = ({brand, title, image, price, oldPrice, shortDesc, shipping}) => {
     const [discount, setDiscount] = useState(0)
     useEffect(() => {
         if (price && oldPrice !== undefined) {
@@ -24,10 +19,10 @@ const VerticalCard = ({brand, title, price, oldPrice, shortDesc, shipping}) => {
     }, []); 
     
     return (
-        <div id="card-vertical">
+        <div id="vertical-card">
             {discount > 0 ? <div className="discount-flag"><p>-{discount}%</p></div> : ""}
             <div className="card-img">
-                <img src={imgA} alt="" />
+                <img src={image} alt="" />
             </div>
             <div className="card-body">
                 <h6 className="brand">{brand}</h6>

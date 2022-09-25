@@ -16,7 +16,7 @@
         color: mainStyle.$black-75;
         height: 80px;
         margin-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         &::before,
         &::after {
             content: '';
@@ -44,5 +44,11 @@
         width: 100%;
         max-width: 80vw;
         margin: auto;
+        &.horizontal-cards {
+            max-width: 70vw;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 30px;
+        }
     }
+    
 }

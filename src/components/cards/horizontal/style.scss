@@ -1,0 +1,94 @@
+@use '../../../style/mainStyle.scss' as mainStyle;
+
+#horizontal-card {
+    display: flex;
+    gap: 50px;
+    background-color: mainStyle.$black-5;
+    border-radius: 10px;
+    color: mainStyle.$black-75;
+    min-height: 200px;
+    cursor: pointer;
+    transition: all .10s ease-in-out;
+    &:hover {        
+        transform: scale(1.05);
+        z-index: 1;
+        .description {
+            button.action-btn {
+                span {
+                    &::before {
+                        right: -20px;
+                        animation-name: pulse;
+                        animation-timing-function: ease-in;
+                        animation-duration: .55s;
+                        animation-iteration-count: infinite;
+                        animation-direction: alternate;
+                    }
+                    @keyframes pulse {
+                        0% {
+                            right: -20px;
+                        }
+                        100% {
+                            right: -40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .description {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+        padding-left: 30px;
+        * {
+            margin-bottom: 5px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .price {
+            margin-top: 5px;
+            span {
+                font-size: 1.3rem;
+                color: mainStyle.$primary;
+            }
+        }
+        button.action-btn {
+            border: 0;
+            color: mainStyle.$primary;
+            text-transform: uppercase;
+            background-color: unset;
+            text-align: left;
+            margin-top: 15px;
+            padding: 0;
+            cursor: pointer;
+            span {
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    right: -20px;
+                    top: 15%;
+                    width: 8px;
+                    height: 8px;
+                    border: 1px solid mainStyle.$primary;
+                    border-bottom: 0;
+                    border-right: 0;
+                    transform: rotate(130deg);
+                    transition: all .10s ease-in-out;
+                }
+            }
+        }
+    }
+    .image {
+        flex: 1;
+        display: flex;
+        img {
+            width: 100%;
+            border-radius: 0 10px 10px 0;
+            object-fit: cover;
+        }
+    }
+}
