@@ -1,0 +1,152 @@
+@use '../../../style/mainStyle.scss' as mainStyle;
+
+#card-vertical {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid mainStyle.$black-10;
+    cursor: pointer;
+    flex-basis: 33.333333%;
+    background-color: white;
+    transition: all .10s ease-in-out;
+    &:hover {
+        transform: scale(1.05);
+        z-index: 1;
+        .discount-flag {
+            background-color: lighten(mainStyle.$tertiary, 10%);
+        }
+    }
+    .discount-flag {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: mainStyle.$tertiary;
+        border-radius: 50px;
+        left: 10px;
+        top: -20px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        p {
+            font-size: .8rem;
+            margin-left: -5px;
+            margin-bottom: 2px;
+            transform: rotateZ(-15deg);
+        }
+    }
+    .card-img{
+        img {
+            width: 100%;
+        }
+    }
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        * {
+            margin-bottom: 10px;
+            &:last-child  {
+                margin-bottom: 0px;
+
+            }
+        }
+        .brand {
+            margin-bottom: 3px;
+            color: mainStyle.$black-50;
+        }
+        .price {
+            color: mainStyle.$black-50;
+            span {
+                &:first-child {
+                    font-weight: bold;
+                    color: mainStyle.$primary;
+                }
+                &.oldPrice {
+                    text-decoration: line-through;
+                    font-style: italic;
+                    font-size: .9rem;
+                }
+            }
+        }
+        .short-desc {
+            opacity: 1;
+            max-height: 200px;
+            padding-bottom: 20px;
+            margin-bottom: auto;
+        }
+        .shipping {
+            color: mainStyle.$success;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .add-card-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background-image: mainStyle.$gradient;
+            border: 0;
+            border-radius: 50px;
+            color: white;
+            font-style: italic;
+            text-transform: uppercase;
+            padding: 0px 10px 0 1px;
+            cursor: pointer;
+            &:hover{
+                background-color: mainStyle.$secondary;
+                background-image: unset;
+                svg.card-icon {
+                    background-color: mainStyle.$secondary;
+                    animation-name: blink-div;
+                    animation-duration: .55s;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate-reverse;
+                    path {
+                        fill: white;
+                        animation-name: blink-card-svg;
+                        animation-duration: .55s;
+                        animation-iteration-count: infinite;
+                        animation-direction: alternate-reverse;
+                        @keyframes blink-card-svg {
+                            0% {
+                                fill: white;
+                            }
+                            100% {
+                                fill: mainStyle.$secondary;
+                            }
+                        }
+                    }
+                    @keyframes blink-div {
+                        0% {
+                            background-color: mainStyle.$secondary;
+                        }
+                        100% {
+                            background-color: white;
+                        }
+                    }
+                }
+            }
+            svg.card-icon {
+                display: inline-block;
+                width: 80px;
+                height: 20px;
+                background-color: white;
+                padding: 3px 0;
+                margin: 1px 0;
+                border-radius: 50px;
+                transition: all .15s ease-in-out;
+                path {
+                    transform: skewX(-10deg);
+                    fill: mainStyle.$primary;
+                    transition: all .15s ease-in-out;
+                }
+            } 
+        }
+    }
+}

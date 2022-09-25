@@ -1,0 +1,48 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+#products-section {
+    width: 100%;
+    margin: auto;
+    padding: 16px 24px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+    &:nth-child(odd) {
+        background-color: mainStyle.$black-5;
+    }
+    .section-title {
+        position: relative;
+        text-align: center;
+        font-family: 'Monoton';
+        color: mainStyle.$black-75;
+        height: 80px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: mainStyle.$black-75;
+        }
+        &::before {
+            bottom: 38px;
+            width: 150px;            
+        }
+        &::after {
+            bottom: 30px;
+            width: 75px;
+        }
+    }
+    .products {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 10px;
+        row-gap: 40px;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 80vw;
+        margin: auto;
+    }
+}

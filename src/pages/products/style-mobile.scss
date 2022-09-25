@@ -1,0 +1,22 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+$small: 425px;
+$medium: 768px;
+
+@media screen and (max-width: $medium) {
+    #products-section {
+        width: 100%;
+        .products {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+@media screen and (max-width: $small) {
+    #products-section {
+        .products {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+    
+}
+

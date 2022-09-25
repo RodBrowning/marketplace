@@ -1,15 +1,19 @@
 @use '../../style/mainStyle.scss' as mainStyle;
 
-header {
+#header {
     display: flex;
     justify-content: space-between;
-        align-items: center;
+    align-items: center;
     margin-bottom: 24px;
     padding: 16px 24px;
     background-image: mainStyle.$gradient;
     color: white;
     .logo {
         font-family: 'Monoton';
+        a {
+            color: white;
+            text-decoration: none;
+        }
     }
 
     nav{
