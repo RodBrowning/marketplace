@@ -1,0 +1,69 @@
+@use '../../../style/mainStyle.scss' as mainStyle;
+
+.add-card-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-image: mainStyle.$gradient;
+    border: 0;
+    border-radius: 50px;
+    color: white;
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 0px 10px 0 1px;
+    cursor: pointer;
+    &:hover{
+        background-color: mainStyle.$secondary;
+        background-image: unset;
+        svg.card-icon {
+            background-color: mainStyle.$secondary;
+            animation-name: blink-div;
+            animation-timing-function: ease-in;
+            animation-duration: .55s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            path {
+                fill: white;
+                animation-name: blink-card-svg;
+                animation-duration: .55s;
+                animation-timing-function: ease-in;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                @keyframes blink-card-svg {
+                    0% {
+                        fill: mainStyle.$secondary;
+                    }
+                    100% {
+                        fill: white;
+                    }
+                }
+            }
+            @keyframes blink-div {
+                0% {
+                    background-color: white;
+                }
+                100% {
+                    background-color: mainStyle.$secondary;
+                }
+            }
+        }
+    }
+    svg.card-icon {
+        display: inline-block;
+        width: 165px;
+        height: 20px;
+        background-color: white;
+        padding: 3px 0;
+        margin: 1px 0;
+        border-radius: 50px;
+        transition: all .15s ease-in-out;
+        path {
+            transform: skewX(-10deg);
+            fill: mainStyle.$primary;
+            transition: all .15s ease-in-out;
+        }
+    }
+    span {
+        width: 100%;
+    } 
+}
