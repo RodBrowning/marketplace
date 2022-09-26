@@ -15,9 +15,9 @@ button#add-card-btn {
     &:hover{
         background-color: mainStyle.$secondary;
         background-image: unset;
-        svg.card-icon {
+        svg.cart-icon {
             background-color: mainStyle.$secondary;
-            animation-name: blink-div;
+            animation-name: blink-add-div;
             animation-timing-function: ease-in;
             animation-duration: .55s;
             animation-iteration-count: infinite;
@@ -38,7 +38,7 @@ button#add-card-btn {
                     }
                 }
             }
-            @keyframes blink-div {
+            @keyframes blink-add-div {
                 0% {
                     background-color: white;
                 }
@@ -48,7 +48,7 @@ button#add-card-btn {
             }
         }
     }
-    svg.card-icon {
+    svg.cart-icon {
         display: inline-block;
         width: 165px;
         height: 20px;
