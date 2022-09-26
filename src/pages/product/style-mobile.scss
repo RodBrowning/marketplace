@@ -1,0 +1,33 @@
+$large: 1040px;
+$medium: 768px;
+$small: 425px;
+
+@media screen and (max-width: $medium) {
+    #product-page {
+        .product-container {
+            flex-direction: column;
+            width: 90%;
+            .product-description {
+                margin-top: 24px;
+                button#add-card-btn {
+                    width: 250px;
+                    align-self: flex-end;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: $small) {
+    #product-page {
+        .product-container {
+            .product-description {
+                margin-top: 16px;
+                button#add-card-btn {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

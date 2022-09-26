@@ -1,0 +1,65 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+#product-page {
+    .product-container {
+        max-Width: 800px;
+        width: 100%;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 48px;
+        display: flex;
+        position: relative;        
+        .discount-flag {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: mainStyle.$tertiary;
+            border-radius: 50px;
+            left: 10px;
+            top: -20px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            p {
+                font-size: .8rem;
+                margin-left: -5px;
+                margin-bottom: 2px;
+                transform: rotateZ(-15deg);
+            }
+        }
+        .product-image {
+            img {
+                width: 100%;
+            }
+        }
+        .product-description {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            > * {
+                margin-bottom: 10px;
+                &:last-child  {
+                    margin-bottom: 0px;
+                }
+            }
+            .brand {
+                margin-bottom: 3px;
+                color: mainStyle.$black-50;
+            }
+            .description {
+                opacity: 1;
+            }
+            .shipping {
+                color: mainStyle.$success;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                font-style: italic;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

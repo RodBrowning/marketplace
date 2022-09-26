@@ -36,7 +36,7 @@
             transform: rotateZ(-15deg);
         }
     }
-    .card-img{
+    .card-img {
         img {
             width: 100%;
         }
@@ -50,26 +50,11 @@
             margin-bottom: 10px;
             &:last-child  {
                 margin-bottom: 0px;
-
             }
         }
         .brand {
             margin-bottom: 3px;
             color: mainStyle.$black-50;
-        }
-        .price {
-            color: mainStyle.$black-50;
-            span {
-                &:first-child {
-                    font-weight: bold;
-                    color: mainStyle.$primary;
-                }
-                &.oldPrice {
-                    text-decoration: line-through;
-                    font-style: italic;
-                    font-size: .9rem;
-                }
-            }
         }
         .short-desc {
             opacity: 1;
@@ -79,7 +64,6 @@
         }
         .shipping {
             color: mainStyle.$success;
-            height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;

@@ -7,6 +7,10 @@ export const  truncateString = ( str, n, useWordBoundary ) => {
   };
 
   
-  export const numToCurrency = (number) => {
+  export const getPercentage = (price, oldPrice) => {
+  return Math.round((price * 100) / oldPrice);
+}
+  
+export const numToCurrency = (number) => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);
 }
