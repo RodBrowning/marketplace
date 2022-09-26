@@ -29,12 +29,50 @@
                     font-weight: bold;
                     text-decoration: none;
                     transition: all .15s ease-in-out;
-                    svg > path {
-                        fill: white;
-                        transform: scale(.8);
-                    }
-                    &:hover {
+                    &:hover, &.active  {
                         color: mainStyle.$black-75;
+                        .cart-btn {
+                            color: mainStyle.$black-75;
+                            svg path {
+                                fill: mainStyle.$black-75;                            
+                            }
+                        }
+                    }
+                    .cart-btn {
+                        display: flex;
+                        position: relative;
+                        color: white;
+                        &::before {
+                            content: '';
+                            width: 20px;
+                            height: 20px;
+                            position: absolute;
+                            top: -7px;
+                            right: -7px;
+                            background-color: mainStyle.$tertiary;
+                            border-radius: 50px;
+                        }
+                        &:hover {
+                            color: mainStyle.$black-75;
+                        }
+                        .num-itens {
+                            position: absolute;
+                            top: 0;
+                            right: -6px;
+                            width: 20px;
+                            text-align: center;
+                            transform: translateY(-4px);
+                        }
+                        svg {
+                            width: 35px;
+                            height: 35px;
+                            &:hover path {
+                                fill: mainStyle.$black-75;
+                            }
+                            path {
+                                fill: white;
+                            }
+                        } 
                     }
                 }
             }
