@@ -1,0 +1,23 @@
+
+@use '../../../style/mainStyle.scss' as mainStyle;
+
+.discount-flag {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: mainStyle.$tertiary;
+    border-radius: 50px;
+    left: 10px;
+    top: -20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    p {
+        font-size: .8rem;
+        margin-left: -5px;
+        margin-bottom: 2px;
+        transform: rotateZ(-15deg);
+    }
+}
