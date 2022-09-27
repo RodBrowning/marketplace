@@ -8,6 +8,10 @@
     padding: 16px 24px;
     background-image: mainStyle.$gradient;
     color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: mainStyle.$zIndex-header;
     .logo {
         font-family: 'Monoton';
         a {

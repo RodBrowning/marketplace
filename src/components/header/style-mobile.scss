@@ -1,0 +1,9 @@
+$large: 1040px;
+$medium: 768px;
+$small: 425px;
+
+@media screen and (max-width: $small) {
+    .logo a h2 {
+        font-size: 1.4rem;
+    }
+}

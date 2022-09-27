@@ -4,11 +4,6 @@ import './style-mobile.scss';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
-    
-    function cartItems() {
-        return []
-    }
-    
     return (
         <header id="header">
             <div className="logo">
