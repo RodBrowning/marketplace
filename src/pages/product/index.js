@@ -16,11 +16,11 @@ export async function loader({ params }) {
   }
 
 const Product = () => {
-    const id = useLoaderData();
-    const brand = "Volvo";
-    const title = "Constellation";
-    const price = 23.050;
-    const oldPrice = 35.738;
+    // const id = useLoaderData();
+    const brand = "Brand";
+    const title = "T-Shirt";
+    const price = 15;
+    const oldPrice = 18;
     const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.";
     const shipping = true;
 

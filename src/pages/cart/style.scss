@@ -1,7 +1,7 @@
 @use '../../style/mainStyle.scss' as mainStyle;
 
 #card-container {
-    max-Width: 800px;
+    max-Width: 1000px;
     margin: auto;
     margin-top: 60px;
     .products-list {
@@ -25,28 +25,36 @@
                     th, td {
                         padding: 15px;
                         vertical-align: middle;
-                        &:nth-child(4) {
-                            text-align: right;
-                        }
-                    }
-                    th {
-                        color: white;
-                    }
-                    td {
                         width: 10%;
                         &:first-child {
                             font-weight: bold;
                             width: 5%;
                         }
                         &:nth-child(2) {
-                            width: 50%;
+                            width: 40%;
                         }
                         &:nth-child(3) {
                             text-align: center;
                         }
+                        &:nth-child(4) {
+                            text-align: right;
+                            width: 15%;
+                        }
+                        &:nth-child(5) {
+                            text-align: center;
+                            width: 20%;
+                            &.free-shipping {
+                                color: mainStyle.$success;
+                                font-weight: bold;
+                                font-style: italic;
+                            }
+                        }
                         #remove-card-btn {
                             margin: auto;
                         }
+                    }
+                    th {
+                        color: white;
                     }
                 }
             }

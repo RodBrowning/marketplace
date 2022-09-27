@@ -8,7 +8,7 @@ export const  truncateString = ( str, n, useWordBoundary ) => {
 
   
   export const getPercentage = (price, oldPrice) => {
-  return Math.round((price * 100) / oldPrice);
+  return 100 - Math.round((price * 100) / oldPrice);
 }
   
 export const numToCurrency = (number) => {

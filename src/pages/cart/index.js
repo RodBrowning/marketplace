@@ -20,6 +20,7 @@ const Cart = () => {
                             <th>Title</th>
                             <th>Quantity</th>
                             <th>Price</th>
+                            <th>Shipping</th>
                             <th></th>
                         </tr>
                         <tr>
@@ -29,6 +30,7 @@ const Cart = () => {
                                 <QuantitySelector quantity={16}/>
                             </td>
                             <td>{numToCurrency(15.222)}</td>
+                            <td>{numToCurrency(222)}</td>
                             <td>
                                 <RemoveCartButton />
                             </td>
@@ -40,6 +42,7 @@ const Cart = () => {
                                 <QuantitySelector quantity={200}/>
                             </td>
                             <td>{numToCurrency(15.222)}</td>
+                            <td className='free-shipping'>Free shipping</td>
                             <td>
                                 <RemoveCartButton />
                             </td>
@@ -51,6 +54,7 @@ const Cart = () => {
                                 <QuantitySelector quantity={6}/>
                             </td>
                             <td>{numToCurrency(15565.89)}</td>
+                            <td>{numToCurrency(15.89)}</td>
                             <td>
                                 <RemoveCartButton />
                             </td>
