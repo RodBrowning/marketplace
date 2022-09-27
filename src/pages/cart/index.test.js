@@ -5,28 +5,28 @@ import {BrowserRouter} from 'react-router-dom';
 test('Cart page', () => {
   render(<Cart />, {wrapper: BrowserRouter});
   
-  const checkoutTable = screen.queryByRole("table");
+  const checkoutTable = screen.getByRole("table");
   expect(checkoutTable).toBeInTheDocument();
 
-  const numberColumn = screen.queryByText(/#/);
+  const numberColumn = screen.getByText(/#/);
   expect(numberColumn).toBeInTheDocument();
 
-  const titileColumn = screen.queryByText(/Title/);
+  const titileColumn = screen.getByText(/Title/);
   expect(titileColumn).toBeInTheDocument();
 
-  const quantityColumn = screen.queryByText(/Quantity/);
+  const quantityColumn = screen.getByText(/Quantity/);
   expect(quantityColumn).toBeInTheDocument();
 
-  const priceColumn = screen.queryByText(/Price/);
+  const priceColumn = screen.getByText(/Price/);
   expect(priceColumn).toBeInTheDocument();
 
-  const shippingColumn = screen.queryByText(/Shipping/);
+  const shippingColumn = screen.getByText(/Shipping/);
   expect(shippingColumn).toBeInTheDocument();
 
-  const rowsNumber = screen.queryAllByRole('row');
+  const rowsNumber = screen.getAllByRole('row');
   expect(rowsNumber.length).toBeGreaterThanOrEqual(1);
 
-  const checkoutButton = screen.queryByText(/Checkout/);
+  const checkoutButton = screen.getByText(/Checkout/);
   expect(checkoutButton).toBeInTheDocument();
     
 });

@@ -6,7 +6,7 @@ describe('Quantity selector', () => {
       render(
         <QuantitySelector quantity={5} />);
         
-        const selectBox = screen.queryByRole('combobox');
+        const selectBox = screen.getByRole('combobox');
         expect(selectBox).toBeInTheDocument();
 
         const selectOption = screen.queryAllByRole('option');

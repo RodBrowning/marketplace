@@ -9,22 +9,22 @@ describe('Vertical card', () => {
         const verticalCardDiscount = screen.queryByText('-17%');
         expect(verticalCardDiscount).toBeInTheDocument();
 
-        const verticalCardImage = screen.queryByRole('img');
+        const verticalCardImage = screen.getByRole('img');
         expect(verticalCardImage).toBeInTheDocument();
             
-        const verticalCardBrand = screen.queryByRole('heading', {level: 6, name: 'Brand'});
+        const verticalCardBrand = screen.getByRole('heading', {level: 6, name: 'Brand'});
         expect(verticalCardBrand).toBeInTheDocument();
     
-        const verticalCardTitle = screen.queryByRole('heading', {level: 4, name: 'T-Shirt'});
+        const verticalCardTitle = screen.getByRole('heading', {level: 4, name: 'T-Shirt'});
         expect(verticalCardTitle).toBeInTheDocument();
     
-        const verticalCardPrice = screen.queryByRole('heading', {level: 4, name: '$15.00 / $18.00'});
+        const verticalCardPrice = screen.getByRole('heading', {level: 4, name: '$15.00 / $18.00'});
         expect(verticalCardPrice).toBeInTheDocument();
             
-        const verticalCardShipping = screen.queryByRole('heading', {level: 6, name: 'Free Shipping'});
+        const verticalCardShipping = screen.getByRole('heading', {level: 6, name: 'Free Shipping'});
         expect(verticalCardShipping).toBeInTheDocument();
     
-        const verticalCardShortDescription = screen.queryByText(/Lorem ipsum dolor sit amet consectetur/i);
+        const verticalCardShortDescription = screen.getByText(/Lorem ipsum dolor sit amet consectetur/i);
         expect(verticalCardShortDescription).toBeInTheDocument();
     });
 
@@ -34,22 +34,22 @@ describe('Vertical card', () => {
         const verticalCardDiscount = screen.queryByText(/-0%/i);
         expect(verticalCardDiscount).not.toBeInTheDocument();
 
-        const verticalCardImage = screen.queryByRole('img');
+        const verticalCardImage = screen.getByRole('img');
         expect(verticalCardImage).toBeInTheDocument();
             
-        const verticalCardBrand = screen.queryByRole('heading', {level: 6, name: 'Brand'});
+        const verticalCardBrand = screen.getByRole('heading', {level: 6, name: 'Brand'});
         expect(verticalCardBrand).toBeInTheDocument();
     
-        const verticalCardTitle = screen.queryByRole('heading', {level: 4, name: 'T-Shirt'});
+        const verticalCardTitle = screen.getByRole('heading', {level: 4, name: 'T-Shirt'});
         expect(verticalCardTitle).toBeInTheDocument();
     
-        const verticalCardPrice = screen.queryByRole('heading', {level: 4, name: '$15.00'});
+        const verticalCardPrice = screen.getByRole('heading', {level: 4, name: '$15.00'});
         expect(verticalCardPrice).toBeInTheDocument();
     
         const verticalCardShipping = screen.queryByRole('heading', {level: 6, name: 'Free Shipping'});
         expect(verticalCardShipping).toBeInTheDocument();
     
-        const verticalCardShortDescription = screen.queryByText(/Lorem ipsum dolor sit amet consectetur/i);
+        const verticalCardShortDescription = screen.getByText(/Lorem ipsum dolor sit amet consectetur/i);
         expect(verticalCardShortDescription).toBeInTheDocument();
     });
 
@@ -59,22 +59,22 @@ describe('Vertical card', () => {
         const verticalCardDiscount = screen.queryByText(/-0%/i);
         expect(verticalCardDiscount).not.toBeInTheDocument();
 
-        const verticalCardImage = screen.queryByRole('img');
+        const verticalCardImage = screen.getByRole('img');
         expect(verticalCardImage).toBeInTheDocument();
             
-        const verticalCardBrand = screen.queryByRole('heading', {level: 6, name: 'Brand'});
+        const verticalCardBrand = screen.getByRole('heading', {level: 6, name: 'Brand'});
         expect(verticalCardBrand).toBeInTheDocument();
     
-        const verticalCardTitle = screen.queryByRole('heading', {level: 4, name: 'T-Shirt'});
+        const verticalCardTitle = screen.getByRole('heading', {level: 4, name: 'T-Shirt'});
         expect(verticalCardTitle).toBeInTheDocument();
     
-        const verticalCardPrice = screen.queryByRole('heading', {level: 4, name: '$15.00'});
+        const verticalCardPrice = screen.getByRole('heading', {level: 4, name: '$15.00'});
         expect(verticalCardPrice).toBeInTheDocument();
     
         const verticalCardShipping = screen.queryByRole('heading', {level: 6, name: 'Free Shipping'});
         expect(verticalCardShipping).not.toBeInTheDocument();
     
-        const verticalCardShortDescription = screen.queryByText(/Lorem ipsum dolor sit amet consectetur/i);
+        const verticalCardShortDescription = screen.getByText(/Lorem ipsum dolor sit amet consectetur/i);
         expect(verticalCardShortDescription).toBeInTheDocument();
     });
 })

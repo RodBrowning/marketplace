@@ -3,7 +3,17 @@ $medium: 768px;
 $small: 425px;
 
 @media screen and (max-width: $small) {
-    .logo a h2 {
-        font-size: 1.4rem;
+    #header {
+        .logo a h2 {
+            font-size: 1.4rem;
+        }
+        nav ul { 
+            gap: 8px; 
+            li a .cart-btn svg {
+                width: 25px;
+                height: 25px;
+            }
+        } 
     }
+
 }

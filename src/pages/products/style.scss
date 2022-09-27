@@ -6,7 +6,7 @@
     padding: 16px 24px;
     padding-bottom: 50px;
     box-sizing: border-box;
-    &:nth-child(odd) {
+    &:nth-child(even) {
         background-color: mainStyle.$black-5;
     }
     .section-title {
