@@ -1,0 +1,13 @@
+[33m85b5c86[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Create cart component
+[33mb820d3a[m Code review
+[33m3ebfa29[m Set header cart button
+[33m9c6471c[m Create product page & split price and discount into components
+[33m6f3bda0[m Create add cart button component
+[33m1ff4af1[m Set horizontal product card
+[33m80af793[m Set home products page
+[33md42d02f[m Set product route loader
+[33m1ee8473[m Set react-router-dom and paths
+[33m9ab4f01[m Set header component
+[33mfef5b78[m Define font sizes
+[33m756c976[m Add sass and define typography
+[33m4afd122[m inicial commit
