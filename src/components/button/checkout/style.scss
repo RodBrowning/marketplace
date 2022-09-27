@@ -1,0 +1,22 @@
+@use '../../../style/mainStyle.scss' as mainStyle;
+
+button#checkout-btn {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-image: mainStyle.$gradient;
+    border: 0;
+    border-radius: 50px;
+    color: white;
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 8px 32px;
+    cursor: pointer;
+    &:hover{
+        background-color: mainStyle.$secondary;
+        background-image: unset;
+    }
+    span {
+        width: 100%;
+    } 
+}

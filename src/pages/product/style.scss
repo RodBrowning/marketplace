@@ -49,6 +49,13 @@
                 margin-bottom: 3px;
                 color: mainStyle.$black-50;
             }
+            .quantity {
+                font-weight: bold;
+                color: mainStyle.$black-75;
+            }
+            #quantity-selector {
+                width: unset;
+            }
             .description {
                 opacity: 1;
             }

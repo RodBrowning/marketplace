@@ -1,0 +1,14 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+#quantity-selector {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    background-color: transparent;
+    background-color: mainStyle.$black-10;
+    border-radius: 50px;
+    padding: 5px;
+}

@@ -1,0 +1,74 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+#card-container {
+    max-Width: 800px;
+    margin: auto;
+    margin-top: 60px;
+    .products-list {
+        margin: 0 10px;
+        overflow-x: auto;
+        height: 100%;
+        table {
+            width: 100%;
+            text-align: left;
+            tbody {
+                tr {
+                    border-bottom: 1px solid mainStyle.$black-25;
+                    &:first-child {
+                        background-image: mainStyle.$gradient;
+                        font-weight: bold;
+                        border-bottom: unset;
+                    }
+                    &:nth-child(odd) {
+                        background-color: mainStyle.$black-5;
+                    }
+                    th, td {
+                        padding: 15px;
+                        vertical-align: middle;
+                        &:nth-child(4) {
+                            text-align: right;
+                        }
+                    }
+                    th {
+                        color: white;
+                    }
+                    td {
+                        width: 10%;
+                        &:first-child {
+                            font-weight: bold;
+                            width: 5%;
+                        }
+                        &:nth-child(2) {
+                            width: 50%;
+                        }
+                        &:nth-child(3) {
+                            text-align: center;
+                        }
+                        #remove-card-btn {
+                            margin: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .total-container {
+        border-bottom: 1px solid mainStyle.$black-25;
+        padding-right: 24px;
+        margin: 0 10px;
+        margin-bottom: 24px;
+        h5 {
+            font-weight: bold;
+            text-align: right;
+            padding: 22px 0;
+            span {
+                margin-right: 12px;
+            }
+        }
+    }
+    .action-container {
+        button {
+            margin-left: auto;
+        }
+    }
+}
