@@ -3,7 +3,7 @@ import './style.scss';
 const getKey = () => {
     const randomNumber = Math.floor(Math.random() * 999) + 100;
     const dateInMilliseconds = new Date().getTime();
-    return `${randomNumber}-${dateInMilliseconds}`;
+    return `${randomNumber}${dateInMilliseconds}`;
 }
 
 const QuantitySelector = ({quantity}) => {
