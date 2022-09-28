@@ -2,6 +2,7 @@ import './style.scss';
 import './style-mobile.scss';
 
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { getPercentage, numToCurrency } from '../../utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -9,7 +10,6 @@ import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
-import { getPercentage } from '../../utils/utils';
 import { setProd } from '../../features/products/productsSlice';
 import { useLoaderData } from "react-router-dom";
 
@@ -62,6 +62,14 @@ const Product = () => {
         setCurrentProduct(cartProduct)
         dispatch(addToCart(cartProduct))
     }
+
+    const getTotalToPay = () => {
+        let total = currentProduct.price.value * quantity;
+        if(!currentProduct.freeShipping){
+            total += currentProduct.price.shipping
+        }
+        return total;
+    }
     
     return (
         <section id='product-page'>
@@ -79,6 +87,8 @@ const Product = () => {
                             oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}
                             currencyInfo={currentProduct.price.currencyInfo}
                         />
+                        {!currentProduct.freeShipping && <p className='shipping-label'>Shipping <span>{numToCurrency(currentProduct.price.shipping, currentProduct.price.currencyInfo)}</span></p>}
+                        
                         <p className='quantity'>Quantity</p>
                         <QuantitySelector 
                             quantity={currentProduct.quantityAvailable} 
@@ -87,6 +97,8 @@ const Product = () => {
                         />
                         <p className="description">{currentProduct.description}</p>
                         {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
+                        
+                        <p className='total-label'>Total: <span>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
                         <AddCartButton 
                             buttonAction={handleAddToCart} 
                             disabled={isInTheCart}

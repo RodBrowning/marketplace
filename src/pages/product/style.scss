@@ -33,9 +33,12 @@
                 margin-bottom: 3px;
                 color: mainStyle.$black-50;
             }
-            .quantity {
+            .quantity, .shipping-label {
                 font-weight: bold;
                 color: mainStyle.$black-75;
+                span {
+                    color: mainStyle.$primary;
+                }
             }
             #quantity-selector {
                 width: unset;
@@ -51,6 +54,16 @@
                 justify-content: flex-end;
                 font-style: italic;
                 margin-bottom: 15px;
+            }
+            .total-label {
+                font-weight: bold;
+                color: mainStyle.$black-75;
+                font-size: 1.2rem;
+                text-align: right;
+                margin: 10px 0 20px 0;
+                span {
+                    color: mainStyle.$primary;
+                }
             }
         }
     }

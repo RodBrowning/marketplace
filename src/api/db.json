@@ -26,12 +26,12 @@
                 "brand": "Hasbro",
                 "title": "Operation",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": true,
+                "freeShipping": false,
                 "newest": false,
                 "price": {
                     "value": 20,
                     "oldValue": 22,
-                    "shipping": 2,
+                    "shipping": 2.55,
                     "currencyInfo": {
                         "locale": "en-GB",
                         "currencyCode": "GBP"
