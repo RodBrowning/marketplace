@@ -14,7 +14,6 @@
         text-align: center;
         font-family: 'Monoton';
         color: mainStyle.$black-75;
-        height: 80px;
         margin-top: 20px;
         margin-bottom: 30px;
         &::before,
@@ -27,11 +26,11 @@
             background-color: mainStyle.$black-75;
         }
         &::before {
-            bottom: 38px;
+            bottom: -8px;
             width: 150px;            
         }
         &::after {
-            bottom: 30px;
+            bottom: -14px;
             width: 75px;
         }
     }
@@ -50,10 +49,25 @@
             column-gap: 30px;
         }
         &.horizontal-cards, &.vertical-cards {
+            margin-top: 75px;
             a {
                 text-decoration: none;
             }
         }
     }
-    
+}
+.error-message {
+    width: 70vw;
+    text-align: center;
+    margin: auto;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: transparent;
+    font-size: 1rem;
+    background-image: mainStyle.$gradient;
+    background-clip: text;
+    line-height: 30px;
 }

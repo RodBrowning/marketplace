@@ -94,7 +94,7 @@ const Product = () => {
                             oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}
                             currencyInfo={currentProduct.price.currencyInfo}
                         />
-                        {!currentProduct.freeShipping && <p className='shipping-label'>Shipping <span>{numToCurrency(currentProduct.price.shipping, currentProduct.price.currencyInfo)}</span></p>}
+                        {!currentProduct.freeShipping && <p className='shipping-label'>Shipping: <span>{numToCurrency(currentProduct.price.shipping, currentProduct.price.currencyInfo)}</span></p>}
                         
                         <p className='quantity'>Quantity</p>
                         <QuantitySelector 

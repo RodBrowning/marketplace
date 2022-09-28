@@ -22,6 +22,26 @@
                 "quantityAvailable": 10
             },
             {
+                "id": 958533939,
+                "brand": "Lego",
+                "title": "Lego",
+                "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+                "freeShipping": true,
+                "newest": true,
+                "price": {
+                    "value": 35,
+                    "oldValue": 38.99,
+                    "shipping": 2,
+                    "currencyInfo": {
+                        "locale": "en-GB",
+                        "currencyCode": "GBP"
+                    }
+                },
+                "imageURL": "http://localhost:8080/images/Lego.jpg",
+                "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
+                "quantityAvailable": 10
+            },
+            {
                 "id": 95585407,
                 "brand": "Hasbro",
                 "title": "Operation",
@@ -106,7 +126,7 @@
                 "title": "Slip 'N Slide",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
                 "freeShipping": false,
-                "newest": true,
+                "newest": false,
                 "price": {
                     "value": 39.99,
                     "oldValue": 45.99,
@@ -382,7 +402,7 @@
                 "freeShipping": true,
                 "newest": false,
                 "price": {
-                    "value": 200,
+                    "value": 199,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -507,26 +527,6 @@
                     }
                 },
                 "imageURL": "http://localhost:8080/images/BandaiPowerRangers.jpg",
-                "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
-            },
-            {
-                "id": 958533939,
-                "brand": "Lego",
-                "title": "Lego",
-                "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": true,
-                "newest": false,
-                "price": {
-                    "value": 35,
-                    "oldValue": 38.99,
-                    "shipping": 2,
-                    "currencyInfo": {
-                        "locale": "en-GB",
-                        "currencyCode": "GBP"
-                    }
-                },
-                "imageURL": "http://localhost:8080/images/Lego.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                 "quantityAvailable": 10
             }

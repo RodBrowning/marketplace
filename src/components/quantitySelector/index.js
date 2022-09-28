@@ -3,7 +3,7 @@ import './style.scss';
 import {useEffect, useState} from 'react';
 
 const getKey = () => {
-    const randomNumber = Math.floor(Math.random() * 999) + 100;
+    const randomNumber = Math.floor(Math.random() * 99999) + 10000;
     const dateInMilliseconds = new Date().getTime();
     return `${randomNumber}${dateInMilliseconds}`;
 }
