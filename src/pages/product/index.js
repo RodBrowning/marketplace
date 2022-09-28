@@ -1,54 +1,103 @@
 import './style.scss';
 import './style-mobile.scss';
 
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
+import QuantitySelector from '../../components/quantitySelector';
 import { getPercentage } from '../../utils/utils';
 import image from '../../a.jpg';
 import { useLoaderData } from "react-router-dom";
-import QuantitySelector from '../../components/quantitySelector';
 
 export async function loader({ params }) {
     return params.id;
   }
 
 const Product = () => {
-    // const id = useLoaderData();
-    const brand = "Brand";
-    const title = "T-Shirt";
-    const price = 15;
-    const oldPrice = 18;
-    const description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.";
-    const shipping = true;
-
+    const id = useLoaderData();
+    const {products} = useSelector((state) => state.products);
+    const [currentProduct, setCurrentProduct] = useState();
+    const cartList = useSelector((state) => state.cart.list);
     const [discount, setDiscount] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    const [isInTheCart, setIsInTheCart] = useState(false);
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        if (price && oldPrice !== undefined) {
-            setDiscount(getPercentage(price, oldPrice));
+        const product = products.find((product)=>{return product.id == id});
+        setCurrentProduct(product);
+    }, [products, id]);
+
+    useEffect(() => {
+        if (currentProduct && currentProduct.price.value && currentProduct.price.oldValue !== undefined) {
+            setDiscount(getPercentage(currentProduct.price.value, currentProduct.price.oldValue));
         }
-    }, [oldPrice, price]); 
+    }, [currentProduct]); 
+    
+    useEffect(() => {
+        if(currentProduct && cartList && cartList.length > 0){
+            const hasFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id == currentProduct.id})
+            setIsInTheCart(hasFoundInTheCart);
+            
+            if(hasFoundInTheCart) {
+                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
+                setQuantity(cartProduct.quantity)
+            }
+        }
+    }, [cartList, currentProduct]); 
+    
+    useEffect(() => {
+        if(currentProduct && cartList && cartList.length > 0){
+            const productFoundInTheCart = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
+            if(productFoundInTheCart){
+                setCurrentProduct(productFoundInTheCart)
+            }
+        }
+    }, [cartList]);
+
+    useEffect(() => {
+        console.log(currentProduct)
+    }, [currentProduct]); 
+
+    const handleQuantityChange = (quantity) => {
+        setQuantity(quantity)
+        if(!isInTheCart) return
+        
+        dispatch(removeFromCart(currentProduct))
+        const cartProduct = {...currentProduct, quantity};
+        setCurrentProduct(cartProduct)
+        dispatch(addToCart(cartProduct))
+    }
+    const handleAddToCart = () => {
+        const cartProduct = {...currentProduct, quantity};
+        setCurrentProduct(cartProduct)
+        dispatch(addToCart(cartProduct))
+    }
     
     return (
         <section id='product-page'>
-            <div className="product-container">
-                <div className="product-image">
-                    <DiscountDisplay discount={discount} />
-                    <img src={image} alt="" />
+            {currentProduct && 
+                <div className="product-container">
+                    <div className="product-image">
+                        <DiscountDisplay discount={discount} />
+                        <img src={currentProduct.imageURL} alt={currentProduct.imageAlt} />
+                    </div>
+                    <div className="product-description">
+                        <h6 className="brand">{currentProduct.brand}</h6>
+                        <h4 className="title">{currentProduct.title}</h4>
+                        <PriceDisplay price={(currentProduct.price.value * quantity)} oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}/>
+                        <p className='quantity'>Quantity</p>
+                        <QuantitySelector quantity={currentProduct.quantityAvailable} initialQuantity={quantity} handleQuantityChange={handleQuantityChange}/>
+                        <p className="description">{currentProduct.description}</p>
+                        {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
+                        <AddCartButton buttonAction={handleAddToCart} disabled={isInTheCart}/>
+                    </div>
                 </div>
-                <div className="product-description">
-                    <h6 className="brand">{brand}</h6>
-                    <h4 className="title">{title}</h4>
-                    <PriceDisplay price={price} oldPrice={oldPrice}/>
-                    <p className='quantity'>Quantity</p>
-                    <QuantitySelector quantity={6}/>
-                    <p className="description">{description}</p>
-                    {shipping && <h6 className="shipping">Free Shipping</h6>}
-                    <AddCartButton />
-                </div>
-            </div>
+            }
         </section>
     );
 }
