@@ -10,7 +10,7 @@ import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
 import { getPercentage } from '../../utils/utils';
-import image from '../../a.jpg';
+import { setProd } from '../../features/products/productsSlice';
 import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
@@ -19,7 +19,7 @@ export async function loader({ params }) {
 
 const Product = () => {
     const id = useLoaderData();
-    const {products} = useSelector((state) => state.products);
+    const {products, selectedProduct} = useSelector((state) => state.products);
     const [currentProduct, setCurrentProduct] = useState();
     const cartList = useSelector((state) => state.cart.list);
     const [discount, setDiscount] = useState(0);
@@ -27,11 +27,9 @@ const Product = () => {
     const [isInTheCart, setIsInTheCart] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        const product = products.find((product)=>{return product.id == id});
-        setCurrentProduct(product);
-    }, [products, id]);
-
+    useEffect(() => {dispatch(setProd(id))}, [products, id]);
+    useEffect(() => {setCurrentProduct(selectedProduct)}, [selectedProduct]);
+   
     useEffect(() => {
         if (currentProduct && currentProduct.price.value && currentProduct.price.oldValue !== undefined) {
             setDiscount(getPercentage(currentProduct.price.value, currentProduct.price.oldValue));
@@ -50,18 +48,14 @@ const Product = () => {
         }
     }, [cartList, currentProduct]); 
     
-    useEffect(() => {
-        if(currentProduct && cartList && cartList.length > 0){
-            const productFoundInTheCart = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
-            if(productFoundInTheCart){
-                setCurrentProduct(productFoundInTheCart)
-            }
-        }
-    }, [cartList]);
-
-    useEffect(() => {
-        console.log(currentProduct)
-    }, [currentProduct]); 
+    // useEffect(() => {
+    //     if(currentProduct && cartList && cartList.length > 0){
+    //         const productFoundInTheCart = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
+    //         if(productFoundInTheCart){
+    //             setCurrentProduct(productFoundInTheCart)
+    //         }
+    //     }
+    // }, [cartList]);
 
     const handleQuantityChange = (quantity) => {
         setQuantity(quantity)

@@ -48,6 +48,26 @@ button#add-card-btn {
             }
         }
     }
+    &.disabled {
+        background-image: linear-gradient(mainStyle.$black-25, mainStyle.$black-25);
+        background-color: unset;
+        cursor: default;
+        &:hover {
+            background-color: unset;
+            svg.cart-icon {
+                animation-name: none;
+                background-color: white;
+                path {
+                    animation-name: none;
+                    fill: mainStyle.$black-25;
+                }
+            }
+
+        }
+        svg.cart-icon path {
+            fill: mainStyle.$black-25;
+        }
+    }
     svg.cart-icon {
         display: inline-block;
         width: 165px;

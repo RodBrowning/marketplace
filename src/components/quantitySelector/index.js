@@ -1,12 +1,25 @@
 import './style.scss';
 
+import {useEffect, useState} from 'react';
+
 const getKey = () => {
     const randomNumber = Math.floor(Math.random() * 999) + 100;
     const dateInMilliseconds = new Date().getTime();
     return `${randomNumber}${dateInMilliseconds}`;
 }
 
-const QuantitySelector = ({quantity}) => {
+const QuantitySelector = ({quantity, handleQuantityChange, initialQuantity}) => {
+    const [value, setValue] = useState(1);
+
+    useEffect(() => {
+        setValue(initialQuantity);
+    }, [initialQuantity]);
+    
+    const handleChange = (value) => {
+        setValue(value);
+        handleQuantityChange(value)
+    }
+
     const options = (numOfOptions) => {
         const options = [];
         for (let index = 1; index <= numOfOptions; index++) {
@@ -15,8 +28,9 @@ const QuantitySelector = ({quantity}) => {
         }
         return options;
     }
+    
     return (
-        <select id="quantity-selector">
+        <select id="quantity-selector" onChange={(event) =>{handleChange(event.target.value)}} value={value}>
             {options(quantity)}
         </select>
     );

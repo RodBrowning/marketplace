@@ -9,7 +9,7 @@ import DiscountDisplay from '../../display/discount';
 import PriceDisplay from '../../display/price';
 import parse from 'html-react-parser';
 
-const VerticalCard = ({brand, title, image, price, oldPrice, shortDesc, shipping}) => {
+const VerticalCard = ({brand, title, image, imgAlt, price, oldPrice, shortDesc, shipping, goToProductPage, handleAddToCart, disabled}) => {
     const [discount, setDiscount] = useState(0)
     useEffect(() => {
         if (price && oldPrice !== undefined) {
@@ -18,10 +18,10 @@ const VerticalCard = ({brand, title, image, price, oldPrice, shortDesc, shipping
     }, [oldPrice, price]); 
     
     return (
-        <div id="vertical-card">
+        <div id="vertical-card"  onClick={()=>{goToProductPage()}}>
             <div className="card-img">
                 <DiscountDisplay discount={discount} />
-                <img src={image} alt="" />
+                <img src={image} alt={imgAlt} />
             </div>
             <div className="card-body">
                 <h6 className="brand">{brand}</h6>
@@ -29,7 +29,7 @@ const VerticalCard = ({brand, title, image, price, oldPrice, shortDesc, shipping
                 <PriceDisplay price={price} oldPrice={oldPrice}/>
                 <p className="short-desc">{parse(truncateString(shortDesc, 120, true))}</p>
                 {shipping && <h6 className="shipping">Free Shipping</h6>}
-                <AddCartButton />
+                <AddCartButton buttonAction={handleAddToCart} disabled={disabled} />
             </div>
         </div>
     );
