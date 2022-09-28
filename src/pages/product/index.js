@@ -27,7 +27,7 @@ const Product = () => {
     const [isInTheCart, setIsInTheCart] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {dispatch(setProd(id))}, [products, id]);
+    useEffect(() => {dispatch(setProd(id))}, [dispatch, products, id]);
     useEffect(() => {setCurrentProduct(selectedProduct)}, [selectedProduct]);
    
     useEffect(() => {
@@ -48,15 +48,6 @@ const Product = () => {
         }
     }, [cartList, currentProduct]); 
     
-    // useEffect(() => {
-    //     if(currentProduct && cartList && cartList.length > 0){
-    //         const productFoundInTheCart = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
-    //         if(productFoundInTheCart){
-    //             setCurrentProduct(productFoundInTheCart)
-    //         }
-    //     }
-    // }, [cartList]);
-
     const handleQuantityChange = (quantity) => {
         setQuantity(quantity)
         if(!isInTheCart) return
@@ -83,12 +74,23 @@ const Product = () => {
                     <div className="product-description">
                         <h6 className="brand">{currentProduct.brand}</h6>
                         <h4 className="title">{currentProduct.title}</h4>
-                        <PriceDisplay price={(currentProduct.price.value * quantity)} oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}/>
+                        <PriceDisplay 
+                            price={(currentProduct.price.value * quantity)} 
+                            oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}
+                            currencyInfo={currentProduct.price.currencyInfo}
+                        />
                         <p className='quantity'>Quantity</p>
-                        <QuantitySelector quantity={currentProduct.quantityAvailable} initialQuantity={quantity} handleQuantityChange={handleQuantityChange}/>
+                        <QuantitySelector 
+                            quantity={currentProduct.quantityAvailable} 
+                            initialQuantity={quantity} 
+                            handleQuantityChange={handleQuantityChange}
+                        />
                         <p className="description">{currentProduct.description}</p>
                         {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
-                        <AddCartButton buttonAction={handleAddToCart} disabled={isInTheCart}/>
+                        <AddCartButton 
+                            buttonAction={handleAddToCart} 
+                            disabled={isInTheCart}
+                        />
                     </div>
                 </div>
             }

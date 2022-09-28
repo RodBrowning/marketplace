@@ -11,8 +11,8 @@ export const getPercentage = (price, oldPrice) => {
   return 100 - Math.round((price * 100) / oldPrice);
 }
   
-export const numToCurrency = (number) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);
+export const numToCurrency = (number, currencyInfo) => {
+  return new Intl.NumberFormat(currencyInfo.locale, { style: 'currency', currency: currencyInfo.currencyCode }).format(number);
 }
 
 

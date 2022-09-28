@@ -6,7 +6,7 @@
                 "brand": "Tomy",
                 "title": "Tomy Pocket Games",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": false,
+                "freeShipping": true,
                 "newest": false,
                 "price": {
                     "value": 15,
@@ -46,10 +46,11 @@
                 "brand": "Tyco",
                 "title": "RC Pro-Am",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": false,
+                "freeShipping": true,
                 "newest": false,
                 "price": {
-                    "value": 30,
+                    "value": 29.99,
+                    "oldValue": 33.99,
                     "shipping": 1,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -107,7 +108,8 @@
                 "freeShipping": false,
                 "newest": true,
                 "price": {
-                    "value": 40,
+                    "value": 39.99,
+                    "oldValue": 45.99,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -124,7 +126,7 @@
                 "title": "Nerf Ball",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
                 "freeShipping": false,
-                "newest": false,
+                "newest": true,
                 "price": {
                     "value": 10,
                     "shipping": 2,
@@ -142,10 +144,11 @@
                 "brand": "Hasbro",
                 "title": "Twister",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": false,
+                "freeShipping": true,
                 "newest": false,
                 "price": {
                     "value": 4,
+                    "oldValue": 6,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -161,10 +164,11 @@
                 "brand": "Ideal",
                 "title": "Pick Up Sticks",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
-                "freeShipping": false,
-                "newest": false,
+                "freeShipping": true,
+                "newest": true,
                 "price": {
                     "value": 5,
+                    "oldValue": 7,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -200,7 +204,7 @@
                 "title": "Candy Land",
                 "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
                 "freeShipping": true,
-                "newest": false,
+                "newest": true,
                 "price": {
                     "value": 8,
                     "oldValue": 9,
@@ -223,6 +227,7 @@
                 "newest": true,
                 "price": {
                     "value": 34.99,
+                    "oldValue": 44.99,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",

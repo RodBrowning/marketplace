@@ -32,7 +32,8 @@ const Products = () => {
     }
     
     const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
+        const cartProduct = {...product, quantity: 1};
+        dispatch(addToCart(cartProduct))
     }
     
     return (
@@ -42,25 +43,48 @@ const Products = () => {
                         <h1 className="section-title">Newest</h1>
                         <div className="products horizontal-cards">
                             {newersProducts.map((product) => {
-                                return <HorizontalCard goToProductPage={() => {navigate(`/product/${product.id}`)}} key={product.id} brand={product.brand} title={product.title} image={product.imageURL} imageAlt={product.imageAlt} price={product.price.value}/>
+                                return <HorizontalCard 
+                                    goToProductPage={() => {navigate(`/product/${product.id}`)}} 
+                                    key={product.id} 
+                                    brand={product.brand} 
+                                    title={product.title} 
+                                    image={product.imageURL} 
+                                    imageAlt={product.imageAlt} 
+                                    price={product.price.value}
+                                    currencyInfo={product.price.currencyInfo}
+                                />
                             })}
                         </div>
                 </section>
             }
             {products.length > 0 &&
                 <section id="products-section">
-                <h1 className="section-title">90's Products</h1>
-                <div className="products vertical-cards">
-                    {
-                        products.map((product) => {
-                            return <VerticalCard goToProductPage={() => {navigate(`/product/${product.id}`)}} key={product.id} brand={product.brand} title={product.title} image={product.imageURL} imgAlt={product.imageAlt} price={product.price.value} oldPrice={product.price.OldValue} shortDesc={product.description} shipping={product.freeShipping} handleAddToCart={()=>{handleAddToCart(product)}} disabled={isInTheCart(product)}/>
-                        })
-                    }
-                </div>
+                    <h1 className="section-title">90's Products</h1>
+                    <div className="products vertical-cards">
+                        {
+                            products.map((product) => {
+                                return <VerticalCard 
+                                    goToProductPage={() => {navigate(`/product/${product.id}`)}} 
+                                    key={product.id} 
+                                    brand={product.brand} 
+                                    title={product.title} 
+                                    image={product.imageURL} 
+                                    imgAlt={product.imageAlt} 
+                                    price={product.price.value} 
+                                    oldPrice={product.price.oldValue} 
+                                    currencyInfo={product.price.currencyInfo}
+                                    shortDesc={product.description} 
+                                    shipping={product.freeShipping} 
+                                    handleAddToCart={()=>{handleAddToCart(product)}} 
+                                    disabled={isInTheCart(product)}
+                                />
+                            })
+                        }
+                    </div>
                 </section>
             }
         </>
-        );
-    }
+    );
+}
     
 export default Products;
