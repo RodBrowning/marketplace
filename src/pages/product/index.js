@@ -6,6 +6,7 @@ import { getPercentage, numToCurrency } from '../../utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
@@ -49,24 +50,30 @@ const Product = () => {
     }, [cartList, currentProduct]); 
     
     const handleQuantityChange = (quantity) => {
-        setQuantity(quantity)
-        if(!isInTheCart) return
+        setQuantity(quantity);
+        if(!isInTheCart) return;
         
-        dispatch(removeFromCart(currentProduct))
+        dispatch(removeFromCart(currentProduct));
         const cartProduct = {...currentProduct, quantity};
-        setCurrentProduct(cartProduct)
-        dispatch(addToCart(cartProduct))
+        setCurrentProduct(cartProduct);
+        dispatch(addToCart(cartProduct));
     }
+
     const handleAddToCart = () => {
         const cartProduct = {...currentProduct, quantity};
-        setCurrentProduct(cartProduct)
-        dispatch(addToCart(cartProduct))
+        setCurrentProduct(cartProduct);
+        dispatch(addToCart(cartProduct));
+    }
+
+    const handleRemoveFromCart = () => {
+        dispatch(removeFromCart(currentProduct));
+        setIsInTheCart(false);
     }
 
     const getTotalToPay = () => {
         let total = currentProduct.price.value * quantity;
         if(!currentProduct.freeShipping){
-            total += currentProduct.price.shipping
+            total += currentProduct.price.shipping;
         }
         return total;
     }
@@ -99,10 +106,17 @@ const Product = () => {
                         {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
                         
                         <p className='total-label'>Total: <span>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
+                        {!isInTheCart && 
                         <AddCartButton 
                             buttonAction={handleAddToCart} 
                             disabled={isInTheCart}
+                        />}
+                        {isInTheCart && 
+                        <RemoveCartButton 
+                            buttonAction={handleRemoveFromCart} 
+                            disabled={isInTheCart}
                         />
+                        }
                     </div>
                 </div>
             }

@@ -1,72 +1,52 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
 
-button#add-card-btn {
+button#remove-card-btn {
     display: flex;
     align-items: center;
     gap: 16px;
-    background-image: mainStyle.$gradient;
+    background-color: mainStyle.$tertiary;
     border: 0;
     border-radius: 50px;
     color: white;
     font-style: italic;
     text-transform: uppercase;
-    padding: 0px 10px 0 1px;
+    padding: 1px;
     width: 100%;
     cursor: pointer;
     &:hover{
-        background-color: mainStyle.$secondary;
+        background-color: mainStyle.$tertiary;
         background-image: unset;
         svg.cart-icon {
-            background-color: mainStyle.$secondary;
-            animation-name: blink-add-div;
+            background-color: mainStyle.$tertiary;
+            animation-name: blink-remove-div;
             animation-timing-function: ease-in;
             animation-duration: .55s;
             animation-iteration-count: infinite;
             animation-direction: alternate;
             path {
                 fill: white;
-                animation-name: blink-card-svg;
+                animation-name: blink-remove-svg;
                 animation-duration: .55s;
                 animation-timing-function: ease-in;
                 animation-iteration-count: infinite;
                 animation-direction: alternate;
-                @keyframes blink-card-svg {
+                @keyframes blink-remove-svg {
                     0% {
-                        fill: mainStyle.$secondary;
+                        fill: mainStyle.$tertiary;
                     }
                     100% {
                         fill: white;
                     }
                 }
             }
-            @keyframes blink-add-div {
+            @keyframes blink-remove-div {
                 0% {
                     background-color: white;
                 }
                 100% {
-                    background-color: mainStyle.$secondary;
+                    background-color: mainStyle.$tertiary;
                 }
             }
-        }
-    }
-    &.disabled {
-        background-image: linear-gradient(mainStyle.$black-25, mainStyle.$black-25);
-        background-color: unset;
-        cursor: default;
-        &:hover {
-            background-color: unset;
-            svg.cart-icon {
-                animation-name: none;
-                background-color: white;
-                path {
-                    animation-name: none;
-                    fill: mainStyle.$black-25;
-                }
-            }
-
-        }
-        svg.cart-icon path {
-            fill: mainStyle.$black-25;
         }
     }
     svg.cart-icon {
@@ -75,13 +55,12 @@ button#add-card-btn {
         height: 20px;
         background-color: white;
         padding: 3px 0;
-        margin: 1px 0;
         border-radius: 50px;
         transition: all .15s ease-in-out;
-        flex: 5;
+        flex: 3;
         path {
             transform: skewX(-10deg);
-            fill: mainStyle.$primary;
+            fill: mainStyle.$tertiary;
             transition: all .15s ease-in-out;
         }
     }

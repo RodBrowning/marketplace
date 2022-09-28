@@ -7,9 +7,7 @@ import { useEffect, useState } from 'react';
 
 import HorizontalCard from '../../components/cards/horizontal';
 import VerticalCard from '../../components/cards/vertical';
-import { addToCart } from '../../features/cart/cartSlice';
-import { getNewers } from '../../features/products/productsSlice';
-import imgA from '../../a.jpg';
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { shuffleArray } from '../../utils/utils';
 
 const Products = () => {
@@ -34,6 +32,10 @@ const Products = () => {
     const handleAddToCart = (product) => {
         const cartProduct = {...product, quantity: 1};
         dispatch(addToCart(cartProduct))
+    }
+
+    const handleRemoveToCart = (product) => {
+        dispatch(removeFromCart(product))
     }
     
     return (
@@ -76,7 +78,8 @@ const Products = () => {
                                     shortDesc={product.description} 
                                     shipping={product.freeShipping} 
                                     handleAddToCart={()=>{handleAddToCart(product)}} 
-                                    disabled={isInTheCart(product)}
+                                    handleRemoveToCart={()=>{handleRemoveToCart(product)}} 
+                                    isInTheCart={isInTheCart(product)}
                                 />
                             })
                         }

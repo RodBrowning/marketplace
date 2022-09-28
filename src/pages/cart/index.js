@@ -2,11 +2,9 @@ import './style.scss';
 import './style-mobile.scss';
 
 import CheckoutButton from '../../components/button/checkout/checkout';
-import RemoveCartButton from '../../components/button/removeCard/removeCartButton';
 import QuantitySelector from '../../components/quantitySelector';
+import RemoveCartShortButton from '../../components/button/removeCartShortButton/removeCartShortButton';
 import { numToCurrency } from '../../utils/utils';
-
-
 
 const Cart = () => {
     
@@ -29,10 +27,10 @@ const Cart = () => {
                             <td>
                                 <QuantitySelector quantity={16}/>
                             </td>
-                            <td>{numToCurrency(15.222)}</td>
-                            <td>{numToCurrency(222)}</td>
+                            <td>{numToCurrency(15.222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
+                            <td>{numToCurrency(222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
                             <td>
-                                <RemoveCartButton />
+                                <RemoveCartShortButton />
                             </td>
                         </tr>
                         <tr>
@@ -41,10 +39,10 @@ const Cart = () => {
                             <td>
                                 <QuantitySelector quantity={200}/>
                             </td>
-                            <td>{numToCurrency(15.222)}</td>
+                            <td>{numToCurrency(15.222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
                             <td className='free-shipping'>Free shipping</td>
                             <td>
-                                <RemoveCartButton />
+                                <RemoveCartShortButton />
                             </td>
                         </tr>
                         <tr>
@@ -53,10 +51,10 @@ const Cart = () => {
                             <td>
                                 <QuantitySelector quantity={6}/>
                             </td>
-                            <td>{numToCurrency(15565.89)}</td>
-                            <td>{numToCurrency(15.89)}</td>
+                            <td>{numToCurrency(15565.89,{ locale: "en-GB", currencyCode: "GBP" })}</td>
+                            <td>{numToCurrency(15.89,{ locale: "en-GB", currencyCode: "GBP" })}</td>
                             <td>
-                                <RemoveCartButton />
+                                <RemoveCartShortButton />
                             </td>
                         </tr>
                     </tbody>

@@ -5,11 +5,12 @@ import { getPercentage, truncateString } from '../../../utils/utils';
 import { useEffect, useState } from 'react';
 
 import AddCartButton from '../../button/addCart/addCartButton';
+import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import DiscountDisplay from '../../display/discount';
 import PriceDisplay from '../../display/price';
 import parse from 'html-react-parser';
 
-const VerticalCard = ({brand, title, image, imgAlt, price, oldPrice, currencyInfo, shortDesc, shipping, goToProductPage, handleAddToCart, disabled}) => {
+const VerticalCard = ({brand, title, image, imgAlt, price, oldPrice, currencyInfo, shortDesc, shipping, goToProductPage, handleAddToCart, handleRemoveToCart, isInTheCart}) => {
     const [discount, setDiscount] = useState(0)
     useEffect(() => {
         if (price && oldPrice !== undefined) {
@@ -29,7 +30,12 @@ const VerticalCard = ({brand, title, image, imgAlt, price, oldPrice, currencyInf
                 <PriceDisplay price={price} oldPrice={oldPrice} currencyInfo={currencyInfo}/>
                 <p className="short-desc">{parse(truncateString(shortDesc, 120, true))}</p>
                 {shipping && <h6 className="shipping">Free Shipping</h6>}
-                <AddCartButton buttonAction={handleAddToCart} disabled={disabled} />
+                {!isInTheCart &&
+                    <AddCartButton buttonAction={handleAddToCart} />
+                }
+                {isInTheCart &&
+                    <RemoveCartButton buttonAction={handleRemoveToCart} />
+                }
             </div>
         </div>
     );
