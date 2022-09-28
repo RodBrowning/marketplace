@@ -17,7 +17,7 @@ export const fetchProducts = createAsyncThunk(
         method: "get",
         url: "http://localhost:8080/products/"
       }).catch(function (err) {
-        console.error("Make sure to run json-server in order to access the API data");
+        console.error("Make sure to run json-server in order to access the API data.   --->>>   ", err);
         throw err;
       });
       return response.data.GBP
@@ -49,7 +49,7 @@ export const productsSlice = createSlice({
     })
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
-      state.message = action.payload;
+      state.message = "Was not possible to receive the data. Make sure to run Json-server in order to access the API data. Use the command 'npm run json-server', then open a new terminal and execute 'npm run start'.";
       state.isSuccess = false;
     })
   },

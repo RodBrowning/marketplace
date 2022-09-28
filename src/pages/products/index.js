@@ -11,7 +11,7 @@ import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { shuffleArray } from '../../utils/utils';
 
 const Products = () => {
-    const {products, newers} = useSelector((state) => state.products);
+    const {products, newers, loading, isSuccess, message} = useSelector((state) => state.products);
     const cartList = useSelector((state) => state.cart.list);
     const [newersProducts, setNewersProducts] = useState([]);
     const navigate = useNavigate();
@@ -40,6 +40,7 @@ const Products = () => {
     
     return (
         <>
+            {!loading && !isSuccess && <h1 className='error-message'>{message}</h1>}
             {newersProducts.length > 0 && 
                 <section id="products-section">
                         <h1 className="section-title">Newest</h1>
