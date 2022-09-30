@@ -6,12 +6,12 @@ import { getPercentage, numToCurrency } from '../../utils/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
-import { setProd } from '../../features/products/productsSlice';
+import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
+import { setSelectedProduct } from '../../features/products/productsSlice';
 import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
@@ -28,15 +28,13 @@ const Product = () => {
     const [isInTheCart, setIsInTheCart] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {dispatch(setProd(id))}, [dispatch, products, id]);
+    useEffect(() => {dispatch(setSelectedProduct(id))}, [dispatch, products, id]);
     useEffect(() => {setCurrentProduct(selectedProduct)}, [selectedProduct]);
-   
     useEffect(() => {
         if (currentProduct && currentProduct.price.value && currentProduct.price.oldValue !== undefined) {
             setDiscount(getPercentage(currentProduct.price.value, currentProduct.price.oldValue));
         }
-    }, [currentProduct]); 
-    
+    }, [currentProduct]);
     useEffect(() => {
         if(currentProduct && cartList && cartList.length > 0){
             const hasFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id == currentProduct.id})
@@ -47,7 +45,7 @@ const Product = () => {
                 setQuantity(cartProduct.quantity)
             }
         }
-    }, [cartList, currentProduct]); 
+    }, [cartList, currentProduct]);
     
     const handleQuantityChange = (quantity) => {
         setQuantity(quantity);

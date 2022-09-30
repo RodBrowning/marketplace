@@ -17,6 +17,9 @@ export const cartSlice = createSlice({
           return item.id != action.payload.id
         })
       }
+      if(action.payload.quantity === undefined){
+        action.payload.quantity = 1;
+      }
       state.list.push(action.payload)
     },
     removeFromCart: (state, action) => {

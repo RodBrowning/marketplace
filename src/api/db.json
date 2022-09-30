@@ -10,7 +10,6 @@
                 "newest": false,
                 "price": {
                     "value": 15,
-                    "oldValue": 18,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -19,7 +18,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/TomyPocketGames.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 3
             },
             {
                 "id": 958533939,
@@ -39,7 +38,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/Lego.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 15
             },
             {
                 "id": 95585407,
@@ -59,7 +58,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroOperation.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 21
             },
             {
                 "id": 736532033,
@@ -70,7 +69,6 @@
                 "newest": false,
                 "price": {
                     "value": 29.99,
-                    "oldValue": 33.99,
                     "shipping": 1,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -79,7 +77,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/TycoRCPro-Am.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 30
             },
             {
                 "id": 335236212,
@@ -98,7 +96,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/MattelSkip-Bo.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 7
             },
             {
                 "id": 815805288,
@@ -109,7 +107,6 @@
                 "newest": false,
                 "price": {
                     "value": 20,
-                    "oldValue": 22,
                     "shipping": 2,
                     "currencyInfo": {
                         "locale": "en-GB",
@@ -138,7 +135,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/slip-n-slide.jpeg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 9
             },
             {
                 "id": 284222248,
@@ -157,7 +154,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/ParkerBrothersNerfBall.png",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 1
             },
             {
                 "id": 301619399,
@@ -177,7 +174,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroTwister.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 17
             },
             {
                 "id": 765106413,
@@ -197,7 +194,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/IdealPickUpSticks.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 12
             },
             {
                 "id": 264748193,
@@ -216,7 +213,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/TakaraTransformers.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 13
             },
             {
                 "id": 312509515,
@@ -236,7 +233,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/MiltonBradleyCandyLand.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 25
             },
             {
                 "id": 230000158,
@@ -256,7 +253,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/JakksPacificTickleMeElmo.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 22
             },
             {
                 "id": 31281015,
@@ -275,7 +272,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroMrPotatoHead.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 3
             },
             {
                 "id": 271094236,
@@ -294,7 +291,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroMonopoly.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 11
             },
             {
                 "id": 963711935,
@@ -314,7 +311,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/TycoShrinkyDinks.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 5
             },
             {
                 "id": 129090020,
@@ -334,7 +331,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/MiltonBradleySimon.png",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 18
             },
             {
                 "id": 469086610,
@@ -373,7 +370,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/SpinMasterTamagotchi.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 34
             },
             {
                 "id": 394399607,
@@ -392,7 +389,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/NamcoPacMan.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 18
             },
             {
                 "id": 164616179,
@@ -411,7 +408,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/SuperNintendoEntertainmentSystem.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 2
             },
             {
                 "id": 282059554,
@@ -431,7 +428,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroMyLittlePony.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 8
             },
             {
                 "id": 929569073,
@@ -451,7 +448,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroPoundPuppies.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 23
             },
             {
                 "id": 409368611,
@@ -470,7 +467,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/HasbroCabbagePatchKids.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 3
             },
             {
                 "id": 604245678,
@@ -489,7 +486,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/MattelBarbie.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 1
             },
             {
                 "id": 316151695,
@@ -508,7 +505,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/TigerElectronicsFurby.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 8
             },
             {
                 "id": 826496256,
@@ -528,7 +525,7 @@
                 },
                 "imageURL": "http://localhost:8080/images/BandaiPowerRangers.jpg",
                 "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
-                "quantityAvailable": 10
+                "quantityAvailable": 16
             }
         ]
     }
