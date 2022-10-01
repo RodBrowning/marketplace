@@ -17,7 +17,7 @@ const QuantitySelector = ({quantity, handleQuantityChange, initialQuantity}) => 
     
     const handleChange = (value) => {
         setValue(value);
-        handleQuantityChange(value)
+        handleQuantityChange(Number(value))
     }
 
     const options = (numOfOptions) => {

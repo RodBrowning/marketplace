@@ -29,19 +29,22 @@ const Product = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {dispatch(setSelectedProduct(id))}, [dispatch, products, id]);
+
     useEffect(() => {setCurrentProduct(selectedProduct)}, [selectedProduct]);
+
     useEffect(() => {
         if (currentProduct && currentProduct.price.value && currentProduct.price.oldValue !== undefined) {
             setDiscount(getPercentage(currentProduct.price.value, currentProduct.price.oldValue));
         }
     }, [currentProduct]);
+
     useEffect(() => {
         if(currentProduct && cartList && cartList.length > 0){
-            const hasFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id == currentProduct.id})
+            const hasFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
             setIsInTheCart(hasFoundInTheCart);
             
             if(hasFoundInTheCart) {
-                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id == currentProduct.id})
+                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id})
                 setQuantity(cartProduct.quantity)
             }
         }
@@ -52,12 +55,12 @@ const Product = () => {
         if(!isInTheCart) return;
         
         dispatch(removeFromCart(currentProduct));
-        const cartProduct = {...currentProduct, quantity};
-        setCurrentProduct(cartProduct);
-        dispatch(addToCart(cartProduct));
+        setCurrentProduct(currentProduct);
+        dispatch(addToCart({...currentProduct, quantity}));
     }
 
     const handleAddToCart = () => {
+        isInTheCart && dispatch(removeFromCart(currentProduct));
         const cartProduct = {...currentProduct, quantity};
         setCurrentProduct(cartProduct);
         dispatch(addToCart(cartProduct));
@@ -96,7 +99,7 @@ const Product = () => {
                         
                         <p className='quantity'>Quantity</p>
                         <QuantitySelector 
-                            quantity={currentProduct.quantityAvailable} 
+                            quantity={currentProduct.availableQuantity} 
                             initialQuantity={quantity} 
                             handleQuantityChange={handleQuantityChange}
                         />

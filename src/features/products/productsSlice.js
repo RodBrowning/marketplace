@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import axios from 'axios';
 
@@ -7,7 +7,11 @@ const initialProductsState = {
     message: '',
     isSuccess: false,
     products: [],
-    selectedProduct: {}
+    selectedProduct: {},
+    productsCurrencyInfo: {
+      locale: "",
+      currencyCode: ""
+    }
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -30,7 +34,7 @@ export const productsSlice = createSlice({
   reducers: {
     setSelectedProduct: (state, action) => {
       const product = state.products.find((product) => {
-        return product.id == action.payload
+        return product.id === Number(action.payload)
       })
       state.selectedProduct = product;
     }
@@ -46,6 +50,8 @@ export const productsSlice = createSlice({
       state.newers = action.payload.filter((product) => {
         return product.newest === true;
       });
+      state.productsCurrencyInfo.locale = action.payload[0].price.currencyInfo.locale;
+      state.productsCurrencyInfo.currencyCode = action.payload[0].price.currencyInfo.currencyCode;
     })
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;

@@ -1,7 +1,7 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -26,7 +26,14 @@ const Products = () => {
     }, [newers])
     
     const isInTheCart = (product) => {
-        return cartList.some((cartProduct)=>{return cartProduct.id == product.id}) 
+        return cartList.some((cartProduct)=>{return cartProduct.id === product.id}) 
+    }
+
+    const handleAddToCart = (product) => {
+        if(isInTheCart(product)){
+            dispatch(removeFromCart({...product}));
+        }
+        dispatch(addToCart({...product}));
     }
     
     return (
@@ -69,7 +76,7 @@ const Products = () => {
                                     currencyInfo={product.price.currencyInfo}
                                     shortDesc={product.description} 
                                     shipping={product.freeShipping} 
-                                    handleAddToCart={()=>{dispatch(addToCart(product))}} 
+                                    handleAddToCart={()=>{handleAddToCart(product)}} 
                                     handleRemoveToCart={()=>{dispatch(removeFromCart(product))}} 
                                     isInTheCart={isInTheCart(product)}
                                 />

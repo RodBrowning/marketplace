@@ -1,73 +1,114 @@
 import './style.scss';
 import './style-mobile.scss';
 
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 import CheckoutButton from '../../components/button/checkout/checkout';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartShortButton from '../../components/button/removeCartShortButton/removeCartShortButton';
 import { numToCurrency } from '../../utils/utils';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
+    const {list: cartList, total, totalProducts, totalShipping} = useSelector((state) => state.cart);
+    const {productsCurrencyInfo} = useSelector((state) => state.products);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        let timeout;
+        if(cartList.length === 0) {
+            timeout = setTimeout(() => {
+                navigate('/')
+            }, 2000);
+        }
+        return () => {
+            clearTimeout(timeout);
+        }
+    },[navigate, cartList.length]);
+
+    const handleQuantityChange = (product, quantity) => {
+        dispatch(removeFromCart({...product, quantity}));
+        dispatch(addToCart({...product, quantity}));
+    }
     
     return (
-        <section id='card-container'>
-            <div className="products-list">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Shipping</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Mustang</td>
-                            <td>
-                                <QuantitySelector quantity={16}/>
-                            </td>
-                            <td>{numToCurrency(15.222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
-                            <td>{numToCurrency(222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
-                            <td>
-                                <RemoveCartShortButton />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Mustang</td>
-                            <td>
-                                <QuantitySelector quantity={200}/>
-                            </td>
-                            <td>{numToCurrency(15.222,{ locale: "en-GB", currencyCode: "GBP" })}</td>
-                            <td className='free-shipping'>Free shipping</td>
-                            <td>
-                                <RemoveCartShortButton />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Mustang</td>
-                            <td>
-                                <QuantitySelector quantity={6}/>
-                            </td>
-                            <td>{numToCurrency(15565.89,{ locale: "en-GB", currencyCode: "GBP" })}</td>
-                            <td>{numToCurrency(15.89,{ locale: "en-GB", currencyCode: "GBP" })}</td>
-                            <td>
-                                <RemoveCartShortButton />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div className="total-container">
-                <h5><span>Total</span>15.222.00</h5>
-            </div>
-            <div className="action-container">
-                <CheckoutButton />
-            </div>
-        </section>
-        );
-    }
+        <>
+        {cartList.length === 0 ? <h3 className="empty-cart">Empty cart</h3> :
+            <section id='card-container'>
+                <div className="products-list">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>#</th>
+                                <th>brand</th>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Shipping</th>
+                                <th></th>
+                            </tr>
+                            {cartList.map((product, index)=>{
+                                return (<TableRow 
+                                    key={product.id}
+                                    product={product} 
+                                    index={index}
+                                    handleQuantityChange={(quantity) => {handleQuantityChange(product ,quantity)}}
+                                    handleRemoveFromCart={()=>{dispatch(removeFromCart(product))}} 
+                                />)
+                            })}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan="4"></td>
+                                <td>{numToCurrency(totalProducts ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</td>
+                                <td>{totalShipping > 0 ? numToCurrency(totalShipping ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode }) : <span className='free-shipping'>Free</span>}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div className="total-container">
+                    <h5><span>Total</span>{numToCurrency(total ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</h5>
+                </div>
+                <div className="action-container">
+                    <CheckoutButton />
+                </div>
+            </section>}
+        </>
+    );
+}
+
+const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) => {
+    const navigate = useNavigate();
+    return (
+        <tr onClick={()=> navigate(`/product/${product.id}`)}>
+            <td>{String(index+1).padStart(2,"0")}</td>
+            <td>{product.brand}</td>
+            <td>{product.title}</td>
+            <td onClick={(event)=> event.stopPropagation()}>
+                <QuantitySelector 
+                    quantity={product.availableQuantity}
+                    initialQuantity={product.quantity} 
+                    handleQuantityChange={(quantity)=>{handleQuantityChange(quantity)}}
+                />
+            </td>
+            <td>
+                {numToCurrency(product.price.value * product.quantity,{ locale: product.price.currencyInfo.locale, currencyCode: product.price.currencyInfo.currencyCode })}
+                </td>
+            <td className={product.freeShipping ? 'free-shipping' : ''}>
+                {product.freeShipping && '-'}
+                {numToCurrency(product.price.shipping ,{ locale: product.price.currencyInfo.locale, currencyCode: product.price.currencyInfo.currencyCode })}
+                </td>
+            <td onClick={(event)=> event.stopPropagation()}>
+                <RemoveCartShortButton
+                    buttonAction={handleRemoveFromCart} 
+                    disabled={false}
+                    />
+            </td>
+        </tr>
+    )
+}
     
 export default Cart;
