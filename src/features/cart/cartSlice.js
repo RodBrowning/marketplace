@@ -20,13 +20,14 @@ export const cartSlice = createSlice({
       action.payload.totalToPay = action.payload.price.value * action.payload.quantity;
       state.list.push(action.payload);
 
-      const total = state.list.reduce((sum, product) => (sum += product.totalToPay), 0);
+      const totalProducts = state.list.reduce((sum, product) => (sum += product.totalToPay), 0);
       const totalShipping = action.payload.freeShipping ? 0 : action.payload.price.shipping;
-      
-      state.totalProducts = roundToTwoDecimals(total);
+
+      state.totalProducts = roundToTwoDecimals(totalProducts);
       state.totalShipping += roundToTwoDecimals(totalShipping);
-      const sumToPay = total + state.totalShipping;
-      state.total = roundToTwoDecimals(sumToPay);
+
+      const total = totalProducts + state.totalShipping;
+      state.total = roundToTwoDecimals(total);
 
       state.list = [...state.list].sort((a,b) => {
         return (
@@ -37,11 +38,12 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const quantity = state.list.find((product) => product.id === action.payload.id).quantity;
-      const newTotalProducts = state.totalProducts - (action.payload.price.value * quantity);
+      const totalProducts = state.totalProducts - (action.payload.price.value * quantity);
       const totalShipping = action.payload.freeShipping ? 0 : action.payload.price.shipping;
 
-      state.totalProducts = roundToTwoDecimals(newTotalProducts);
+      state.totalProducts = roundToTwoDecimals(totalProducts);
       state.totalShipping -= roundToTwoDecimals(totalShipping);
+      
       const sumToPay = state.totalProducts + state.totalShipping;
       state.total = roundToTwoDecimals(sumToPay);
       

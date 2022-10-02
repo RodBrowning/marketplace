@@ -1,18 +1,19 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
-import { getPercentage, numToCurrency } from '../../utils/utils';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useLoaderData } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { setSelectedProduct } from '../../features/products/productsSlice';
+import { getPercentage, numToCurrency } from '../../utils/utils';
 
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
-import { setSelectedProduct } from '../../features/products/productsSlice';
-import { useLoaderData } from "react-router-dom";
 
 export async function loader({ params }) {
     return params.id;
@@ -21,12 +22,13 @@ export async function loader({ params }) {
 const Product = () => {
     const id = useLoaderData();
     const {products, selectedProduct} = useSelector((state) => state.products);
-    const [currentProduct, setCurrentProduct] = useState();
     const cartList = useSelector((state) => state.cart.list);
+    const dispatch = useDispatch();
+
+    const [currentProduct, setCurrentProduct] = useState();
     const [discount, setDiscount] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [isInTheCart, setIsInTheCart] = useState(false);
-    const dispatch = useDispatch();
 
     useEffect(() => {dispatch(setSelectedProduct(id))}, [dispatch, products, id]);
 
@@ -40,10 +42,10 @@ const Product = () => {
 
     useEffect(() => {
         if(currentProduct && cartList && cartList.length > 0){
-            const hasFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
-            setIsInTheCart(hasFoundInTheCart);
+            const wasItFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
+            setIsInTheCart(wasItFoundInTheCart);
             
-            if(hasFoundInTheCart) {
+            if(wasItFoundInTheCart) {
                 const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id})
                 setQuantity(cartProduct.quantity)
             }
@@ -61,9 +63,9 @@ const Product = () => {
 
     const handleAddToCart = () => {
         isInTheCart && dispatch(removeFromCart(currentProduct));
-        const cartProduct = {...currentProduct, quantity};
-        setCurrentProduct(cartProduct);
-        dispatch(addToCart(cartProduct));
+        const product = {...currentProduct, quantity};
+        setCurrentProduct(product);
+        dispatch(addToCart(product));
     }
 
     const handleRemoveFromCart = () => {

@@ -1,14 +1,15 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { useNavigate } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { shuffleArray } from '../../utils/utils';
 
 import HorizontalCard from '../../components/cards/horizontal';
 import VerticalCard from '../../components/cards/vertical';
-import { shuffleArray } from '../../utils/utils';
 
 const Products = () => {
     const {products, newest, loading, isSuccess, message} = useSelector((state) => state.products);
@@ -65,7 +66,6 @@ const Products = () => {
                         {
                             products.map((product) => {
                                 return <VerticalCard 
-                                    goToProductPage={() => {navigate(`/product/${product.id}`)}} 
                                     key={product.id} 
                                     brand={product.brand} 
                                     title={product.title} 
@@ -76,6 +76,7 @@ const Products = () => {
                                     currencyInfo={product.price.currencyInfo}
                                     shortDesc={product.description} 
                                     shipping={product.freeShipping} 
+                                    goToProductPageHandler={() => {navigate(`/product/${product.id}`)}} 
                                     handleAddToCart={()=>{handleAddToCart(product)}} 
                                     handleRemoveToCart={()=>{dispatch(removeFromCart(product))}} 
                                     isInTheCart={isInTheCart(product)}

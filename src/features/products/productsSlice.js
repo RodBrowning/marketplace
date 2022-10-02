@@ -55,7 +55,7 @@ export const productsSlice = createSlice({
     })
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
-      state.message = "Was not possible to receive the data. Make sure to run Json-server in order to access the API data. Use the command 'npm run json-server', then open a new terminal and execute 'npm run start'.";
+      state.message = "Was not possible to receive the data. Make sure to run Json-server in order to access the API. In a another terminal run the command 'npm run json-server'.";
       state.isSuccess = false;
     })
   },

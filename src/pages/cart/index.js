@@ -1,15 +1,16 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { numToCurrency } from '../../utils/utils';
 
 import CheckoutButton from '../../components/button/checkout/checkout';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartShortButton from '../../components/button/removeCartShortButton/removeCartShortButton';
-import { numToCurrency } from '../../utils/utils';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const {list: cartList, total, totalProducts, totalShipping} = useSelector((state) => state.cart);
@@ -20,9 +21,7 @@ const Cart = () => {
     useEffect(()=>{
         let timeout;
         if(cartList.length === 0) {
-            timeout = setTimeout(() => {
-                navigate('/')
-            }, 2000);
+            timeout = setTimeout(() => navigate('/'), 1000);
         }
         return () => {
             clearTimeout(timeout);
