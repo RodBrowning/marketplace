@@ -4,7 +4,7 @@ import testImage from '../testImage.jpg';
 
 describe('Horizontal card', () => {
     test('Complete', () => {
-      render(<HorizontalCard brand="Brand" title="T-Shirt" image={testImage} price={15} />);
+      render(<HorizontalCard brand="Brand" title="T-Shirt" image={testImage} price={15} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} />);
             
         const horizontalCardBrand = screen.getByRole('heading', {level: 6, name: 'Brand'});
         expect(horizontalCardBrand).toBeInTheDocument();
@@ -12,7 +12,7 @@ describe('Horizontal card', () => {
         const horizontalCardTitle = screen.getByRole('heading', {level: 3, name: 'T-Shirt'});
         expect(horizontalCardTitle).toBeInTheDocument();
     
-        const horizontalCardPrice = screen.getByRole('heading', {level: 6, name: 'Price $15.00'});
+        const horizontalCardPrice = screen.getByRole('heading', {level: 6, name: 'Price £15.00'});
         expect(horizontalCardPrice).toBeInTheDocument();
     
         const horizontalCardShipping = screen.getByRole('button', {name: 'Shop now'});
