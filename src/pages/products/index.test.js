@@ -61,7 +61,7 @@ describe('Home page', () => {
       })
     )
     renderWithProviders(<App />);
-    const error = await screen.findByRole('heading', {level: 1, name: "Was not possible to receive the data. Make sure to run Json-server in order to access the API. In a another terminal run the command 'npm run json-server'."})
+    const error = await screen.findByRole('heading', {level: 1, name: "Some error occurred and the application was not able to receive the data. Please, contact the admin. See console for further information."})
     expect(error).toBeInTheDocument();
   });
   

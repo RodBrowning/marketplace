@@ -21,7 +21,7 @@ export const fetchProducts = createAsyncThunk(
         method: "get",
         url: "https://mock-products.herokuapp.com/products/"
       }).catch(function (err) {
-        console.error("Make sure to run json-server in order to access the API data.   --->>>   ", err);
+        console.error("Some error occourred. Was not possible to receive the data. Please, contact the admin.   --->>>   ", err);
         throw err;
       });
       return response.data.GBP;
@@ -55,7 +55,7 @@ export const productsSlice = createSlice({
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
-      state.message = "Was not possible to receive the data. Make sure to run Json-server in order to access the API. In a another terminal run the command 'npm run json-server'.";
+      state.message = "Some error occurred and the application was not able to receive the data. Please, contact the admin. See console for further information.";
       state.isSuccess = false;
     });
   },
