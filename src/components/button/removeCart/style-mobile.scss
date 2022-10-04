@@ -1,1 +1,13 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
+
+$large: 1040px;
+$medium: 768px;
+$small: 425px;
+
+@media screen and (max-width: $small) {
+    button#remove-card-btn {
+        span {
+            text-align: unset;
+        }
+    }
+}
