@@ -6,7 +6,7 @@ const initialCartState = {
     totalShipping: 0,
     totalProducts: 0,
     list: [],
-}
+};
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -53,8 +53,8 @@ export const cartSlice = createSlice({
       state.list = cartWithoutProduct;
     },
   },
-})
+});
 
-export const { addToCart, removeFromCart } = cartSlice.actions
+export const { addToCart, removeFromCart } = cartSlice.actions;
 
-export default cartSlice.reducer
+export default cartSlice.reducer;

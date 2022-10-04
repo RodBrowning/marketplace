@@ -24,9 +24,9 @@ export const fetchProducts = createAsyncThunk(
         console.error("Make sure to run json-server in order to access the API data.   --->>>   ", err);
         throw err;
       });
-      return response.data.GBP
+      return response.data.GBP;
     }
-  )
+  );
   
 export const productsSlice = createSlice({
   name: 'products',
@@ -42,7 +42,7 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
-    })
+    });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;
       state.isSuccess = true;
@@ -52,16 +52,16 @@ export const productsSlice = createSlice({
       });
       state.productsCurrencyInfo.locale = action.payload[0].price.currencyInfo.locale;
       state.productsCurrencyInfo.currencyCode = action.payload[0].price.currencyInfo.currencyCode;
-    })
+    });
     builder.addCase(fetchProducts.rejected, (state, action) => {
       state.loading = false;
       state.message = "Was not possible to receive the data. Make sure to run Json-server in order to access the API. In a another terminal run the command 'npm run json-server'.";
       state.isSuccess = false;
-    })
+    });
   },
 });
 
 
-export const { setSelectedProduct } = productsSlice.actions
+export const { setSelectedProduct } = productsSlice.actions;
 
-export default productsSlice.reducer
+export default productsSlice.reducer;
