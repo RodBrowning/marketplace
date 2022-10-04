@@ -1,8 +1,6 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
@@ -10,6 +8,8 @@ import CheckoutButton from '../../components/button/checkout/checkout';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartShortButton from '../../components/button/removeCartShortButton/removeCartShortButton';
 import { numToCurrency } from '../../utils/utils';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
     const {list: cartList, total, totalProducts, totalShipping} = useAppSelector((state) => state.cart);
@@ -68,7 +68,7 @@ const Cart = () => {
                     </table>
                 </div>
                 <div className="total-container">
-                    <h5><span>Total</span>{numToCurrency(total ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</h5>
+                    <h5><span>Total:</span>{numToCurrency(total ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</h5>
                 </div>
                 <div className="action-container">
                     <CheckoutButton />

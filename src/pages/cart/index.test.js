@@ -1,10 +1,11 @@
 import { fireEvent, screen } from '@testing-library/react';
-import user from '@testing-library/user-event';
+
+import Cart from '.';
 import { addToCart } from '../../features/cart/cartSlice';
 import { fetchProducts } from '../../features/products/productsSlice';
 import { renderWithProviders } from '../../utils/test-utils';
 import { setupStore } from '../../app/store'
-import Cart from '.';
+import user from '@testing-library/user-event';
 
 const products = [
   {
@@ -168,7 +169,7 @@ describe('Cart page', () => {
     expect(totalShipping.innerHTML).toBe('£2.00');
     
     let totalToPay = await screen.findByRole('heading', {level: 5, name: /Total/i});
-    expect(totalToPay.innerHTML).toBe('<span>Total</span>£592.00');
+    expect(totalToPay.innerHTML).toBe('<span>Total:</span>£592.00');
 
   });
 
@@ -189,7 +190,7 @@ describe('Cart page', () => {
     expect(totalShipping.innerHTML).toBe('£2.00');
     
     let totalToPay = await screen.findByRole('heading', {level: 5, name: /Total/i});
-    expect(totalToPay.innerHTML).toBe('<span>Total</span>£582.00');
+    expect(totalToPay.innerHTML).toBe('<span>Total:</span>£582.00');
     
     //Remove product from the slice
     let removeButtons = await screen.findAllByTestId('remove-from-cart');
@@ -207,7 +208,7 @@ describe('Cart page', () => {
     expect(totalShipping.innerHTML).toBe('<span class=\"free-shipping\">Free</span>');
 
     totalToPay = await screen.findByRole('heading', {level: 5, name: /Total/i});
-    expect(totalToPay.innerHTML).toBe('<span>Total</span>£530.00');
+    expect(totalToPay.innerHTML).toBe('<span>Total:</span>£530.00');
 
   });
 
