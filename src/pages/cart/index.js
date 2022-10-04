@@ -3,20 +3,19 @@ import './style-mobile.scss';
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
-import { numToCurrency } from '../../utils/utils';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import CheckoutButton from '../../components/button/checkout/checkout';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartShortButton from '../../components/button/removeCartShortButton/removeCartShortButton';
+import { numToCurrency } from '../../utils/utils';
 
 const Cart = () => {
-    const {list: cartList, total, totalProducts, totalShipping} = useSelector((state) => state.cart);
-    const {productsCurrencyInfo} = useSelector((state) => state.products);
+    const {list: cartList, total, totalProducts, totalShipping} = useAppSelector((state) => state.cart);
+    const {productsCurrencyInfo} = useAppSelector((state) => state.products);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(()=>{
         let timeout;
@@ -28,7 +27,7 @@ const Cart = () => {
         }
     },[navigate, cartList.length]);
 
-    const handleQuantityChange = (product, quantity) => {
+    const handleQuantityEvent = (product, quantity) => {
         dispatch(removeFromCart({...product, quantity}));
         dispatch(addToCart({...product, quantity}));
     }
@@ -54,7 +53,7 @@ const Cart = () => {
                                     key={product.id}
                                     product={product} 
                                     index={index}
-                                    handleQuantityChange={(quantity) => {handleQuantityChange(product ,quantity)}}
+                                    handleQuantityChange={(quantity) => {handleQuantityEvent(product ,quantity)}}
                                     handleRemoveFromCart={()=>{dispatch(removeFromCart(product))}} 
                                 />)
                             })}
@@ -62,8 +61,8 @@ const Cart = () => {
                         <tfoot>
                             <tr>
                                 <td colSpan="4"></td>
-                                <td>{numToCurrency(totalProducts ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</td>
-                                <td>{totalShipping > 0 ? numToCurrency(totalShipping ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode }) : <span className='free-shipping'>Free</span>}</td>
+                                <td data-testid="total-products">{numToCurrency(totalProducts ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</td>
+                                <td data-testid="total-shipping">{totalShipping > 0 ? numToCurrency(totalShipping ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode }) : <span className='free-shipping'>Free</span>}</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -77,20 +76,21 @@ const Cart = () => {
             </section>}
         </>
     );
-}
+};
 
 const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) => {
     const navigate = useNavigate();
     return (
-        <tr onClick={()=> navigate(`/product/${product.id}`)}>
+        <tr onClick={()=> navigate(`/product/${product.id}`)} 
+        data-testid="table-row">
             <td>{String(index+1).padStart(2,"0")}</td>
             <td>{product.brand}</td>
             <td>{product.title}</td>
-            <td onClick={(event)=> event.stopPropagation()}>
+            <td onClick={(event)=> event.stopPropagation()} data-testid="not-propagate-click-event">
                 <QuantitySelector 
                     quantity={product.availableQuantity}
                     initialQuantity={product.quantity} 
-                    handleQuantityChange={(quantity)=>{handleQuantityChange(quantity)}}
+                    handleChange={(quantity)=>{handleQuantityChange(quantity)}}
                 />
             </td>
             <td>
@@ -100,7 +100,7 @@ const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) 
                 {product.freeShipping && '-'}
                 {numToCurrency(product.price.shipping ,{ locale: product.price.currencyInfo.locale, currencyCode: product.price.currencyInfo.currencyCode })}
                 </td>
-            <td onClick={(event)=> event.stopPropagation()}>
+            <td onClick={(event)=> event.stopPropagation()} data-testid="not-propagate-click-event">
                 <RemoveCartShortButton
                     buttonAction={handleRemoveFromCart} 
                     disabled={false}
@@ -108,6 +108,6 @@ const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) 
             </td>
         </tr>
     )
-}
+};
     
 export default Cart;
