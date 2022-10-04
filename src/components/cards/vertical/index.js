@@ -33,7 +33,7 @@ const VerticalCard = ({
     }, [oldPrice, price]); 
     
     return (
-        <div id="vertical-card"  onClick={()=>{goToProductPageHandler()}}>
+        <div id="vertical-card"  onClick={()=>{goToProductPageHandler()}} data-testid="vertical-card">
             <div className="card-img">
                 <DiscountDisplay discount={discount} />
                 <img src={image} alt={imgAlt} />
