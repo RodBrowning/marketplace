@@ -9,7 +9,7 @@ $small: 425px;
             width: 90%;
             .product-description {
                 margin-top: 24px;
-                button#add-card-btn {
+                button#add-card-btn, button#remove-card-btn {
                     width: 250px;
                     align-self: flex-end;
                 }
@@ -25,7 +25,7 @@ $small: 425px;
         .product-container {
             .product-description {
                 margin-top: 16px;
-                button#add-card-btn {
+                button#add-card-btn, button#remove-card-btn {
                     width: 100%;
                 }
             }
