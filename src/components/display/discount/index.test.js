@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import DiscountDisplay from './index';
 
-describe('Discount', () => {
-    test('Should display -10%', () => {
+describe('Discount display', () => {
+    test('Should show -10%', () => {
       render(
         <DiscountDisplay discount={10} />);
         
@@ -10,11 +10,11 @@ describe('Discount', () => {
         expect(discount).toBeInTheDocument();
     });
 
-    test('Should not display -0%', () => {
+    test('Should not show -0%', () => {
       render(
         <DiscountDisplay discount={0} />);
         
         const discount = screen.queryByText('-0%');
         expect(discount).not.toBeInTheDocument();
     });
-})
+});
