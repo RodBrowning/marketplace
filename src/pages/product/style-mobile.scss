@@ -21,6 +21,7 @@ $small: 425px;
 
 @media screen and (max-width: $small) {
     #product-page {
+        margin-top: -40px;
         .product-container {
             .product-description {
                 margin-top: 16px;
