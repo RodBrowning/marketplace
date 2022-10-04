@@ -15,9 +15,14 @@
     color: white;
     font-weight: bold;
     p {
+        position: inherit;
         font-size: .8rem;
         margin-left: -5px;
         margin-bottom: 2px;
         transform: rotateZ(-15deg);
+        width: 38px;
+        top: 13px;
+        left: 6px;
+        text-align: center;
     }
 }
