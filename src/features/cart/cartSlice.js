@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
       const totalShipping = action.payload.freeShipping ? 0 : action.payload.price.shipping;
 
       state.totalProducts = roundToTwoDecimals(totalProducts);
-      state.totalShipping -= roundToTwoDecimals(totalShipping);
+      state.totalShipping = roundToTwoDecimals((state.totalShipping - totalShipping));
       
       const sumToPay = state.totalProducts + state.totalShipping;
       state.total = roundToTwoDecimals(sumToPay);
