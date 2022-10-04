@@ -19,7 +19,7 @@ export const fetchProducts = createAsyncThunk(
     async (userId, thunkAPI) => {
       const response = await axios({
         method: "get",
-        url: "http://localhost:8080/products/"
+        url: "https://mock-products.herokuapp.com/products/"
       }).catch(function (err) {
         console.error("Make sure to run json-server in order to access the API data.   --->>>   ", err);
         throw err;
