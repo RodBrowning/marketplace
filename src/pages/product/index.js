@@ -2,12 +2,11 @@ import './style.scss';
 import './style-mobile.scss';
 
 import { useEffect, useState } from 'react';
-import { useLoaderData } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useParams } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { setSelectedProduct } from '../../features/products/productsSlice';
 import { getPercentage, numToCurrency } from '../../utils/utils';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
@@ -15,15 +14,11 @@ import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
 
-export async function loader({ params }) {
-    return params.id;
-  }
-
 const Product = () => {
-    const id = useLoaderData();
-    const {products, selectedProduct} = useSelector((state) => state.products);
-    const cartList = useSelector((state) => state.cart.list);
-    const dispatch = useDispatch();
+    const { id } = useParams();
+    const {products, selectedProduct} = useAppSelector((state) => state.products);
+    const cartList = useAppSelector((state) => state.cart.list);
+    const dispatch = useAppDispatch();
 
     const [currentProduct, setCurrentProduct] = useState();
     const [discount, setDiscount] = useState(0);
@@ -62,7 +57,7 @@ const Product = () => {
     }
 
     const handleAddToCart = () => {
-        isInTheCart && dispatch(removeFromCart(currentProduct));
+        // isInTheCart && dispatch(removeFromCart(currentProduct));
         const product = {...currentProduct, quantity};
         setCurrentProduct(product);
         dispatch(addToCart(product));
@@ -97,18 +92,18 @@ const Product = () => {
                             oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}
                             currencyInfo={currentProduct.price.currencyInfo}
                         />
-                        {!currentProduct.freeShipping && <p className='shipping-label'>Shipping: <span>{numToCurrency(currentProduct.price.shipping, currentProduct.price.currencyInfo)}</span></p>}
+                        {!currentProduct.freeShipping && <p className='shipping-label'>Shipping: <span data-testid='shipping-cost'>{numToCurrency(currentProduct.price.shipping, currentProduct.price.currencyInfo)}</span></p>}
                         
                         <p className='quantity'>Quantity</p>
                         <QuantitySelector 
                             quantity={currentProduct.availableQuantity} 
                             initialQuantity={quantity} 
-                            handleQuantityChange={handleQuantityChange}
+                            handleChange={(quantity)=>{handleQuantityChange(quantity)}}
                         />
                         <p className="description">{currentProduct.description}</p>
                         {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
                         
-                        <p className='total-label'>Total: <span>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
+                        <p className='total-label'>Total: <span data-testid='total'>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
                         {!isInTheCart && 
                         <AddCartButton 
                             buttonAction={handleAddToCart} 
@@ -125,6 +120,6 @@ const Product = () => {
             }
         </section>
     );
-}
+};
     
 export default Product;
