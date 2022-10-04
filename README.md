@@ -18,15 +18,26 @@ see the total amount for payment.
 
 ## Notes & Requirements
 
-* You can spend as much time as you want.
-* You may refactor not only the application code, but the tests too. Keep in mind that test code is still code that
-needs to be maintained.
-* Use git to track your changes. **Fork or clone this repository** and commit often.
-* When finished, send us the link or the zip of the project via e-mail.
+- You can spend as much time as you want.
+- You may refactor not only the application code, but the tests too. Keep in mind that test code is still code that
+  needs to be maintained.
+- Use git to track your changes. **Fork or clone this repository** and commit often.
+- When finished, send us the link or the zip of the project via e-mail.
 
 Good luck!
 
 ---
+
+## Running json-server mock API
+
+Install json-server on your local machine with `npm install -g json-server`
+
+Navigate to the root of this repository and start the mock API with the following command:
+
+```
+json-server --w ./src/api/db.json --p 8080 -s ./src/api/public/
+
+```
 
 ## Getting Started with Create React App
 
@@ -58,3 +69,7 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+```
+
+```
