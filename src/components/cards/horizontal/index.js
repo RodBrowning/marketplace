@@ -3,9 +3,9 @@ import './style-mobile.scss';
 
 import { numToCurrency } from '../../../utils/utils';
 
-const HorizontalCard = ({brand, title, image, imageAlt, price, currencyInfo, goToProductPage}) => {
+const HorizontalCard = ({brand, title, image, imageAlt, price, currencyInfo, goToProductPageHandler}) => {
     return (
-        <div id='horizontal-card' onClick={()=>{goToProductPage()}}>
+        <div id='horizontal-card' onClick={()=>{goToProductPageHandler()}} data-testid="horizontal-card">
             <div className="description">
                 <h6 className="brand">{brand}</h6>
                 <h3 className="title">{title}</h3>
