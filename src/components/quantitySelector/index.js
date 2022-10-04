@@ -8,29 +8,29 @@ const getKey = () => {
     return `${randomNumber}${dateInMilliseconds}`;
 }
 
-const QuantitySelector = ({quantity, handleQuantityChange, initialQuantity}) => {
+const QuantitySelector = ({quantity, handleChange, initialQuantity}) => {
     const [value, setValue] = useState(1);
 
     useEffect(() => {
         setValue(initialQuantity);
     }, [initialQuantity]);
     
-    const handleChange = (value) => {
+    const handleChangeEvent = (value) => {
         setValue(value);
-        handleQuantityChange(Number(value))
+        handleChange(Number(value))
     }
 
     const options = (numOfOptions) => {
         const options = [];
         for (let index = 1; index <= numOfOptions; index++) {
-            const option = <option value={index} key={getKey()}>{index}</option>;
+            const option = <option value={index} key={getKey()} data-testid="option">{index}</option>;
             options.push(option);
         }
         return options;
     }
     
     return (
-        <select id="quantity-selector" onChange={(event) =>{handleChange(event.target.value)}} value={value}>
+        <select id="quantity-selector" data-testid="select" onChange={(event) =>{handleChangeEvent(event.target.value)}} value={value}>
             {options(quantity)}
         </select>
     );
