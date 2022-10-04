@@ -3,20 +3,19 @@ import './style-mobile.scss';
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { shuffleArray } from '../../utils/utils';
 
 import HorizontalCard from '../../components/cards/horizontal';
 import VerticalCard from '../../components/cards/vertical';
 
 const Products = () => {
-    const {products, newest, loading, isSuccess, message} = useSelector((state) => state.products);
-    const cartList = useSelector((state) => state.cart.list);
+    const {products, newest, loading, isSuccess, message} = useAppSelector((state) => state.products);
+    const cartList = useAppSelector((state) => state.cart.list);
     const [newestProducts, setNewestProducts] = useState([]);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
 
     useEffect(() => {
@@ -31,9 +30,9 @@ const Products = () => {
     }
 
     const handleAddToCart = (product) => {
-        if(isInTheCart(product)){
-            dispatch(removeFromCart({...product}));
-        }
+        // if(isInTheCart(product)){
+        //     dispatch(removeFromCart({...product}));
+        // }
         dispatch(addToCart({...product}));
     }
     
@@ -43,10 +42,9 @@ const Products = () => {
             {newestProducts.length > 0 && 
                 <section id="products-section">
                         <h1 className="section-title">Newest</h1>
-                        <div className="products horizontal-cards">
+                        <div className="products horizontal-cards" data-testid='Newest-container'>
                             {newestProducts.map((product) => {
                                 return <HorizontalCard 
-                                    goToProductPage={() => {navigate(`/product/${product.id}`)}} 
                                     key={product.id} 
                                     brand={product.brand} 
                                     title={product.title} 
@@ -54,6 +52,7 @@ const Products = () => {
                                     imageAlt={product.imageAlt} 
                                     price={product.price.value}
                                     currencyInfo={product.price.currencyInfo}
+                                    goToProductPageHandler={() => {navigate(`/product/${product.id}`)}} 
                                 />
                             })}
                         </div>
@@ -62,7 +61,7 @@ const Products = () => {
             {products.length > 0 &&
                 <section id="products-section">
                     <h1 className="section-title">90's Products</h1>
-                    <div className="products vertical-cards">
+                    <div className="products vertical-cards" data-testid='products-container'>
                         {
                             products.map((product) => {
                                 return <VerticalCard 
@@ -88,6 +87,6 @@ const Products = () => {
             }
         </>
     );
-}
+};
     
 export default Products;
