@@ -1,7 +1,6 @@
-import { render } from '@testing-library/react';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom';
+import { renderWithProviders } from './utils/test-utils';
 
-test('renders learn react link', () => {
-  render(<App />, {wrapper: BrowserRouter});
+test('renders application', () => {
+  renderWithProviders(<App />);
 });
