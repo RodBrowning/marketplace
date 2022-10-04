@@ -23,7 +23,7 @@ const product =
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 3,
     quantity: 2

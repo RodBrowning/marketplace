@@ -1,8 +1,8 @@
-import {screen} from '@testing-library/react';
-import { renderWithProviders } from '../../utils/test-utils';
-import { fetchProducts } from '../../features/products/productsSlice';
-import { addToCart } from '../../features/cart/cartSlice';
 import Header from './index';
+import { addToCart } from '../../features/cart/cartSlice';
+import { fetchProducts } from '../../features/products/productsSlice';
+import { renderWithProviders } from '../../utils/test-utils';
+import {screen} from '@testing-library/react';
 
 describe('Header', () => {
   test('Should render all nav links', async () => {
@@ -38,7 +38,7 @@ describe('Header', () => {
               currencyCode: "GBP"
           }
       },
-      imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+      imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
       imageAlt: "Lorem ipsum dolor sit amet consectetur.",
       availableQuantity: 3,
       quantity: 2
@@ -69,7 +69,7 @@ describe('Header', () => {
               currencyCode: "GBP"
           }
       },
-      imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+      imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
       imageAlt: "Lorem ipsum dolor sit amet consectetur.",
       availableQuantity: 3,
       quantity: 2
@@ -104,7 +104,7 @@ describe('Header', () => {
               currencyCode: "GBP"
           }
       },
-      imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+      imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
       imageAlt: "Lorem ipsum dolor sit amet consectetur.",
       availableQuantity: 3,
       quantity: 2

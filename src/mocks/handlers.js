@@ -1,8 +1,9 @@
 // src/mocks/handlers.js
+
 import { rest } from 'msw';
 
 export const handlers = [
-    rest.get('http://localhost:8080/products/', (req, res, ctx) => {
+    rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
         
         return res(
           ctx.status(200),
@@ -24,7 +25,7 @@ export const handlers = [
                             "currencyCode": "GBP"
                         }
                     },
-                    "imageURL": "http://localhost:8080/images/TomyPocketGames.jpg",
+                    "imageURL": "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 3
                 },
@@ -43,7 +44,7 @@ export const handlers = [
                             "currencyCode": "GBP"
                         }
                     },
-                    "imageURL": "http://localhost:8080/images/Lego.jpg",
+                    "imageURL": "https://mock-products.herokuapp.com/images/Lego.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 15
                 },
@@ -63,7 +64,7 @@ export const handlers = [
                             "currencyCode": "GBP"
                         }
                     },
-                    "imageURL": "http://localhost:8080/images/HasbroOperation.jpg",
+                    "imageURL": "https://mock-products.herokuapp.com/images/HasbroOperation.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 21
                 },
@@ -82,7 +83,7 @@ export const handlers = [
                             "currencyCode": "GBP"
                         }
                     },
-                    "imageURL": "http://localhost:8080/images/TycoRCPro-Am.jpg",
+                    "imageURL": "https://mock-products.herokuapp.com/images/TycoRCPro-Am.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 30
                 },
@@ -101,7 +102,7 @@ export const handlers = [
                             "currencyCode": "GBP"
                         }
                     },
-                    "imageURL": "http://localhost:8080/images/MattelSkip-Bo.jpg",
+                    "imageURL": "https://mock-products.herokuapp.com/images/MattelSkip-Bo.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 7
                 }]

@@ -23,7 +23,7 @@ const products = [
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 3,
     quantity: 2
@@ -42,7 +42,7 @@ const products = [
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/TycoRCPro-Am.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/TycoRCPro-Am.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 30,
     quantity: 10
@@ -61,7 +61,7 @@ const products = [
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/MattelSkip-Bo.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/MattelSkip-Bo.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 7,
     quantity: 5
@@ -80,7 +80,7 @@ const products = [
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/MattelSkip-Bo.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/MattelSkip-Bo.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 2,
   }

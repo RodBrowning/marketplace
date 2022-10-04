@@ -1,14 +1,13 @@
-import { rest } from 'msw';
-import { server } from '../../mocks/server';
-
-import user from '@testing-library/user-event';
 import { fireEvent, screen } from '@testing-library/react';
-import { addToCart } from '../../features/cart/cartSlice';
-import { renderWithProviders } from '../../utils/test-utils';
-import { setupStore } from '../../app/store';
 
 import App from '../../App';
 import Products from '.';
+import { addToCart } from '../../features/cart/cartSlice';
+import { renderWithProviders } from '../../utils/test-utils';
+import { rest } from 'msw';
+import { server } from '../../mocks/server';
+import { setupStore } from '../../app/store';
+import user from '@testing-library/user-event';
 
 const product = 
   {
@@ -27,7 +26,7 @@ const product =
             currencyCode: "GBP"
         }
     },
-    imageURL: "http://localhost:8080/images/TomyPocketGames.jpg",
+    imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
     imageAlt: "Lorem ipsum dolor sit amet consectetur.",
     availableQuantity: 3,
     quantity: 2
@@ -57,7 +56,7 @@ describe('Home page', () => {
   
   test('Render with api error', async ()=>{
     server.use(
-      rest.get('http://localhost:8080/products/', (req, res, ctx) => {
+      rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
         return res(ctx.status(500))
       })
     )
