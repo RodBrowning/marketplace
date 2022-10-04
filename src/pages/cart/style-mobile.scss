@@ -1,0 +1,15 @@
+@use '../../style/mainStyle.scss' as mainStyle;
+
+$large: 1040px;
+$medium: 768px;
+$small: 425px;
+
+@media screen and (max-width: $large) {
+    #card-container {
+        .action-container {
+            button {
+                margin-right: 10px;
+            }
+        }
+    }
+}
