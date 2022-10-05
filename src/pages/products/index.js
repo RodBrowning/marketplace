@@ -1,17 +1,17 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { shuffleArray } from '../../utils/utils';
+import { useEffect, useState } from 'react';
 
 import HorizontalCard from '../../components/cards/horizontal';
 import VerticalCard from '../../components/cards/vertical';
+import { shuffleArray } from '../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
-    const {products, newest, loading, isSuccess, message} = useAppSelector((state) => state.products);
+    const {products, newest, loading, isSuccess, message, loadingMessage} = useAppSelector((state) => state.products);
     const cartList = useAppSelector((state) => state.cart.list);
     const [newestProducts, setNewestProducts] = useState([]);
     const navigate = useNavigate();
@@ -38,6 +38,7 @@ const Products = () => {
     
     return (
         <>
+            {loading && !isSuccess && <h1 className='loading-message'>{loadingMessage}</h1>}
             {!loading && !isSuccess && <h1 className='error-message'>{message}</h1>}
             {newestProducts.length > 0 && 
                 <section id="products-section">

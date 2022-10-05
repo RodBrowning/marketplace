@@ -56,7 +56,7 @@
         }
     }
 }
-.error-message {
+.error-message, .loading-message {
     width: 90vw;
     text-align: center;
     margin: auto;
@@ -70,4 +70,16 @@
     background-image: mainStyle.$gradient;
     background-clip: text;
     line-height: 30px;
+}
+.loading-message {
+    font-size: 2rem;
+    animation-name: blink-text;
+    animation-timing-function: ease-in;
+    animation-duration: .55s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes blink-text {
+    0%{ opacity: 1;}
+    100%{ opacity: .2;}
 }

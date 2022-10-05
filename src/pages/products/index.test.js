@@ -64,6 +64,19 @@ describe('Home page', () => {
     const error = await screen.findByRole('heading', {level: 1, name: "Some error occurred and the application was not able to receive the data. Please, contact the admin. See console for further information."})
     expect(error).toBeInTheDocument();
   });
+
+  test('Render with loading text', async ()=>{
+    server.use(
+      rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
+        jest.setTimeout(1100);
+        return res(res);
+      })
+    );
+    
+    renderWithProviders(<App />);
+    const loadingText = await screen.findByRole('heading', {level: 1, name: "Loading..."})
+    expect(loadingText).toBeInTheDocument();
+  });
   
   test('Add product to cart', async () => {    
     renderWithProviders(<Products />, { path: '/'});
