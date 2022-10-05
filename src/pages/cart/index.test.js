@@ -113,6 +113,9 @@ describe('Cart page', () => {
     const numberColumn = await screen.findByText(/#/);
     expect(numberColumn).toBeInTheDocument();
   
+    const brandColumn = await screen.findByText(/Brand/, { timeout: 2000});
+    expect(brandColumn).toBeInTheDocument();
+  
     const titileColumn = await screen.findByText(/Title/, { timeout: 2000});
     expect(titileColumn).toBeInTheDocument();
   

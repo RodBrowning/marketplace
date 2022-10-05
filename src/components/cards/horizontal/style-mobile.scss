@@ -2,7 +2,7 @@ $large: 1040px;
 $medium: 768px;
 $small: 425px;
 
-@media screen and (max-width: $large) {
+@media screen and (max-width: $medium) {
     #horizontal-card {
         flex-direction: column-reverse;
         gap: 0;

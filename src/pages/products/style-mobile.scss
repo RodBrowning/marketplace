@@ -7,8 +7,13 @@ $small: 425px;
 @media screen and (max-width: $large) {
     #products-section {
         .products {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 32.5%);
             max-width: unset;
+            &.horizontal-cards {
+                max-width: unset;
+                margin: unset;
+                margin-top: 75px;
+            }
         }
     }
 
@@ -19,11 +24,14 @@ $small: 425px;
         .section-title {
             margin-bottom: 0px;
         }
-        .products, .products.horizontal-cards {
-            margin: unset;
-            max-width: unset;
-            grid-template-columns: repeat(1, 1fr);
-            margin-top: 75px;
+        .products {
+            &.horizontal-cards {
+                grid-template-columns: repeat(2, 47.5%);
+            }
+            &.vertical-cards {
+                grid-template-columns: repeat(2, 49%);
+    
+            }
         }
         .products {
             button#add-card-btn, button#remove-card-btn {
@@ -35,7 +43,10 @@ $small: 425px;
 }
 @media screen and (max-width: $small) {
     #products-section {
-        .products, .products.horizontal-cards {
+        .products {
+            &.vertical-cards, &.horizontal-cards {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     }
     

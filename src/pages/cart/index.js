@@ -41,7 +41,7 @@ const Cart = () => {
                         <tbody>
                             <tr>
                                 <th>#</th>
-                                <th>brand</th>
+                                <th>Brand</th>
                                 <th>Title</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
