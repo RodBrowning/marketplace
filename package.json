@@ -46,7 +46,6 @@
     "collectCoverageFrom": [
       "!src/index.js",
       "!src/reportWebVitals.js",
-      "!src/api/db.json",
       "!src/providers/app-providers.js "
     ]
   },

@@ -11,7 +11,7 @@ import { shuffleArray } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 
 const Products = () => {
-    const {products, newest, loading, isSuccess, message, loadingMessage} = useAppSelector((state) => state.products);
+    const {products, newest, loading, isSuccess, message} = useAppSelector((state) => state.products);
     const cartList = useAppSelector((state) => state.cart.list);
     const [newestProducts, setNewestProducts] = useState([]);
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Products = () => {
     
     return (
         <>
-            {loading && !isSuccess && <h1 className='loading-message'>{loadingMessage}</h1>}
+            {loading && !isSuccess && <h1 className='loading-message'>{message}</h1>}
             {!loading && !isSuccess && <h1 className='error-message'>{message}</h1>}
             {newestProducts.length > 0 && 
                 <section id="products-section">
@@ -78,7 +78,7 @@ const Products = () => {
                                     shipping={product.freeShipping} 
                                     goToProductPageHandler={() => {navigate(`/product/${product.id}`)}} 
                                     handleAddToCart={()=>{handleAddToCart(product)}} 
-                                    handleRemoveToCart={()=>{dispatch(removeFromCart(product))}} 
+                                    handleRemoveFromCart={()=>{dispatch(removeFromCart(product))}} 
                                     isInTheCart={isInTheCart(product)}
                                 />
                             })

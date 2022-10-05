@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const initialProductsState = {
     loading: false,
-    loadingMessage: 'Loading...',
     message: '',
     isSuccess: false,
     products: [],
@@ -43,6 +42,7 @@ export const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
+      state.message = 'Loading...';
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.loading = false;

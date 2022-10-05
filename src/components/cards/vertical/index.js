@@ -5,9 +5,9 @@ import { getPercentage, truncateString } from '../../../utils/utils';
 import { useEffect, useState } from 'react';
 
 import AddCartButton from '../../button/addCart/addCartButton';
-import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import DiscountDisplay from '../../display/discount';
 import PriceDisplay from '../../display/price';
+import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import parse from 'html-react-parser';
 
 const VerticalCard = ({
@@ -22,7 +22,7 @@ const VerticalCard = ({
         shipping, 
         goToProductPageHandler, 
         handleAddToCart, 
-        handleRemoveToCart, 
+        handleRemoveFromCart, 
         isInTheCart
     }) => {
     const [discount, setDiscount] = useState(0)
@@ -48,7 +48,7 @@ const VerticalCard = ({
                     <AddCartButton buttonAction={handleAddToCart} />
                 }
                 {isInTheCart &&
-                    <RemoveCartButton buttonAction={handleRemoveToCart} />
+                    <RemoveCartButton buttonAction={handleRemoveFromCart} />
                 }
             </div>
         </div>
