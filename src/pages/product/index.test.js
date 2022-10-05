@@ -1,10 +1,10 @@
 import { fireEvent, screen } from '@testing-library/react';
 
+import Product from '.';
 import { addToCart } from '../../features/cart/cartSlice';
 import { fetchProducts } from '../../features/products/productsSlice';
 import { renderWithProviders } from '../../utils/test-utils';
 import { setupStore } from '../../app/store';
-import Product from '.';
 
 const product = 
   {
@@ -47,7 +47,7 @@ describe('Product page', () => {
     const productPageBrand = await screen.findByRole('heading', {level: 6, name: 'brandA'});
     expect(productPageBrand).toBeInTheDocument();
 
-    const productPageTitle = await screen.findByRole('heading', {level: 4, name: 'titleA'});
+    const productPageTitle = await screen.findByRole('heading', {level: 2, name: 'titleA'});
     expect(productPageTitle).toBeInTheDocument();
 
     const productPagePrice = await screen.findByRole('heading', {level: 4, name: '£15.00 / £20.00'});
@@ -91,7 +91,7 @@ describe('Product page', () => {
     const productPageBrand = await screen.findByRole('heading', {level: 6, name: 'brandB'});
     expect(productPageBrand).toBeInTheDocument();
 
-    const productPageTitle = await screen.findByRole('heading', {level: 4, name: 'titleB'});
+    const productPageTitle = await screen.findByRole('heading', {level: 2, name: 'titleB'});
     expect(productPageTitle).toBeInTheDocument();
 
     const productPagePrice = await screen.findByRole('heading', {level: 4, name: '£10.00'});
@@ -135,7 +135,7 @@ describe('Product page', () => {
     const productPageBrand = await screen.findByRole('heading', {level: 6, name: 'brandC'});
     expect(productPageBrand).toBeInTheDocument();
 
-    const productPageTitle = await screen.findByRole('heading', {level: 4, name: 'titleC'});
+    const productPageTitle = await screen.findByRole('heading', {level: 2, name: 'titleC'});
     expect(productPageTitle).toBeInTheDocument();
 
     const productPagePrice = await screen.findByRole('heading', {level: 4, name: '£20.00 / £30.00'});
@@ -173,7 +173,6 @@ describe('Product page', () => {
     await store.dispatch(addToCart({...product, quantity: 2}));
     renderWithProviders(<Product />, { path: '/product/100', store });
     
-    console.log(store.getState());
     const productPageSelectBox = await screen.findByRole('combobox');
     // screen.debug()
     expect(productPageSelectBox).toBeInTheDocument();

@@ -86,7 +86,7 @@ const Product = () => {
                     </div>
                     <div className="product-description">
                         <h6 className="brand">{currentProduct.brand}</h6>
-                        <h4 className="title">{currentProduct.title}</h4>
+                        <h2 className="title">{currentProduct.title}</h2>
                         <PriceDisplay 
                             price={(currentProduct.price.value * quantity)} 
                             oldPrice={(currentProduct.price.oldValue && currentProduct.price.oldValue * quantity)}
