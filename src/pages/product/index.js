@@ -1,22 +1,21 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../../features/cart/cartSlice';
-import { setSelectedProduct } from '../../features/products/productsSlice';
 import { getPercentage, numToCurrency } from '../../utils/utils';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useEffect, useState } from 'react';
 
 import AddCartButton from '../../components/button/addCart/addCartButton';
 import DiscountDisplay from '../../components/display/discount';
 import PriceDisplay from '../../components/display/price';
 import QuantitySelector from '../../components/quantitySelector';
 import RemoveCartButton from '../../components/button/removeCart/removeCartButton';
+import { useParams } from 'react-router-dom';
 
 const Product = () => {
     const { id } = useParams();
-    const {products, selectedProduct} = useAppSelector((state) => state.products);
+    const { products } = useAppSelector((state) => state.products);
     const cartList = useAppSelector((state) => state.cart.list);
     const dispatch = useAppDispatch();
 
@@ -25,15 +24,15 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const [isInTheCart, setIsInTheCart] = useState(false);
 
-    useEffect(() => {dispatch(setSelectedProduct(id))}, [dispatch, products, id]);
-
-    useEffect(() => {setCurrentProduct(selectedProduct)}, [selectedProduct]);
-
     useEffect(() => {
-        if (currentProduct && currentProduct.price.value && currentProduct.price.oldValue !== undefined) {
-            setDiscount(getPercentage(currentProduct.price.value, currentProduct.price.oldValue));
+        const [selectedProduct] = products.filter((product) => {
+            return product.id === Number(id);
+        });
+        if (selectedProduct && selectedProduct.price.value && selectedProduct.price.oldValue !== undefined) {
+            setDiscount(getPercentage(selectedProduct.price.value, selectedProduct.price.oldValue));
         }
-    }, [currentProduct]);
+        setCurrentProduct(selectedProduct);
+    }, [id, products]);
 
     useEffect(() => {
         if(currentProduct && cartList && cartList.length > 0){

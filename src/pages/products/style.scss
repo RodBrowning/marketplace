@@ -40,9 +40,8 @@
         column-gap: 10px;
         row-gap: 40px;
         flex-wrap: wrap;
-        width: 100%;
-        max-width: 1150px;
-        margin: auto;
+        width: min(100%, 1150px);
+        margin-inline: auto;
         &.horizontal-cards {
             max-width: 70vw;
             grid-template-columns: repeat(2, 1fr);

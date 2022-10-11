@@ -7,7 +7,6 @@ const initialProductsState = {
     message: '',
     isSuccess: false,
     products: [],
-    selectedProduct: {},
     productsCurrencyInfo: {
       locale: "",
       currencyCode: ""
@@ -31,14 +30,7 @@ export const fetchProducts = createAsyncThunk(
 export const productsSlice = createSlice({
   name: 'products',
   initialState: initialProductsState,
-  reducers: {
-    setSelectedProduct: (state, action) => {
-      const product = state.products.find((product) => {
-        return product.id === Number(action.payload)
-      })
-      state.selectedProduct = product;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
       state.loading = true;
@@ -61,8 +53,5 @@ export const productsSlice = createSlice({
     });
   },
 });
-
-
-export const { setSelectedProduct } = productsSlice.actions;
 
 export default productsSlice.reducer;
