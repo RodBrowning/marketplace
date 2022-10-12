@@ -23,10 +23,6 @@ const Products = () => {
         return cartList.some((cartProduct) => { return cartProduct.id === product.id })
     }
 
-    const handleAddToCart = (product) => {
-        dispatch(addToCart({ ...product }));
-    }
-
     return (
         <>
             {loading && !isSuccess && <h1 className='loading-message'>{message}</h1>}
@@ -68,7 +64,7 @@ const Products = () => {
                                     shortDesc={product.description}
                                     shipping={product.freeShipping}
                                     goToProductPageHandler={() => { navigate(`/product/${product.id}`) }}
-                                    handleAddToCart={() => { handleAddToCart(product) }}
+                                    handleAddToCart={() => { dispatch(addToCart({ ...product })) }}
                                     handleRemoveFromCart={() => { dispatch(removeFromCart(product)) }}
                                     isInTheCart={isInTheCart(product)}
                                 />
