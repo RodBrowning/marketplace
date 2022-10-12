@@ -1,7 +1,7 @@
 import './style.scss';
 import './style-mobile.scss';
 
-const AddCartButton = ({buttonAction, disabled}) => {
+const AddCartButton = ({buttonAction, disabled = false}) => {
     const handleClick = (event) => {
         event.stopPropagation()
         buttonAction();

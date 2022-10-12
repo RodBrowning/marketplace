@@ -21,7 +21,6 @@ const Product = () => {
 
     const [currentProduct, setCurrentProduct] = useState();
     const [quantity, setQuantity] = useState(1);
-    const [isInTheCart, setIsInTheCart] = useState(false);
 
     useEffect(() => {
         const [selectedProduct] = products.filter((product) => {
@@ -31,35 +30,31 @@ const Product = () => {
     }, [id, products]);
 
     useEffect(() => {
-        if(currentProduct && cartList && cartList.length > 0){
-            const wasItFoundInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
-            setIsInTheCart(wasItFoundInTheCart);
-            
-            if(wasItFoundInTheCart) {
-                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id})
-                setQuantity(cartProduct.quantity)
+        if(currentProduct){
+            const isInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id});
+            if(isInTheCart) {
+                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id});
+                setQuantity(cartProduct.quantity);
             }
         }
     }, [cartList, currentProduct]);
     
     const handleQuantityChange = (quantity) => {
         setQuantity(quantity);
+        const isInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
         if(!isInTheCart) return;
         
         dispatch(removeFromCart(currentProduct));
-        setCurrentProduct(currentProduct);
         dispatch(addToCart({...currentProduct, quantity}));
     }
 
     const handleAddToCart = () => {
         const product = {...currentProduct, quantity};
-        setCurrentProduct(product);
         dispatch(addToCart(product));
     }
 
     const handleRemoveFromCart = () => {
         dispatch(removeFromCart(currentProduct));
-        setIsInTheCart(false);
     }
 
     const getTotalToPay = () => {
@@ -98,16 +93,14 @@ const Product = () => {
                         {currentProduct.freeShipping && <h6 className="shipping">Free Shipping</h6>}
                         
                         <p className='total-label'>Total: <span data-testid='total'>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
-                        {!isInTheCart && 
-                        <AddCartButton 
-                            buttonAction={handleAddToCart} 
-                            disabled={isInTheCart}
-                        />}
-                        {isInTheCart && 
-                        <RemoveCartButton 
-                            buttonAction={handleRemoveFromCart} 
-                            disabled={isInTheCart}
-                        />
+                        
+                        {cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id}) ?  
+                            <RemoveCartButton 
+                                buttonAction={handleRemoveFromCart}
+                            /> : 
+                            <AddCartButton 
+                                buttonAction={handleAddToCart}
+                            />
                         }
                     </div>
                 </div>
