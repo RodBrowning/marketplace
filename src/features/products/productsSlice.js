@@ -40,9 +40,6 @@ export const productsSlice = createSlice({
       state.loading = false;
       state.isSuccess = true;
       state.products = action.payload;
-      state.newest = action.payload.filter((product) => {
-        return product.newest === true;
-      });
       state.productsCurrencyInfo.locale = action.payload[0].price.currencyInfo.locale;
       state.productsCurrencyInfo.currencyCode = action.payload[0].price.currencyInfo.currencyCode;
     });
