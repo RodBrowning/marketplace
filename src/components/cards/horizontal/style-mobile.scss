@@ -8,6 +8,7 @@ $small: 425px;
         gap: 0;
         .image {
             img {
+                max-height: 350px;
                 border-radius: 10px 10px 0 0;
             }
         }
