@@ -1,36 +1,29 @@
 import './style.scss';
 
-import {useEffect, useState} from 'react';
-
-const getKey = () => {
-    const randomNumber = Math.floor(Math.random() * 99999) + 10000;
-    const dateInMilliseconds = new Date().getTime();
-    return `${randomNumber}${dateInMilliseconds}`;
-}
+import {useEffect, useRef} from 'react';
 
 const QuantitySelector = ({quantity, handleChange, initialQuantity}) => {
-    const [value, setValue] = useState(1);
+    const selectRef = useRef(initialQuantity);
 
     useEffect(() => {
-        setValue(initialQuantity);
+        selectRef.current.value = initialQuantity;
     }, [initialQuantity]);
     
-    const handleChangeEvent = (value) => {
-        setValue(value);
-        handleChange(Number(value))
+    const handleChangeEvent = () => {
+        handleChange(Number(selectRef.current.value));
     }
 
     const options = (numOfOptions) => {
         const options = [];
         for (let index = 1; index <= numOfOptions; index++) {
-            const option = <option value={index} key={getKey()} data-testid="option">{index}</option>;
+            const option = <option value={index} key={index} data-testid="option">{index}</option>;
             options.push(option);
         }
         return options;
     }
     
     return (
-        <select id="quantity-selector" data-testid="select" onChange={(event) =>{handleChangeEvent(event.target.value)}} value={value}>
+        <select ref={selectRef} value={selectRef.current.value} defaultValue={initialQuantity} id="quantity-selector" data-testid="select" onChange={handleChangeEvent}>
             {options(quantity)}
         </select>
     );
