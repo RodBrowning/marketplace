@@ -89,10 +89,10 @@ describe('Home page', () => {
   });
   
   test('Remove product from cart', async () => {  
-    const str = setupStore();
-    await str.dispatch(addToCart({...product}));
+    const store = setupStore();
+    store.dispatch(addToCart({ ...product }));
     
-    renderWithProviders(<Products />, { path: '/', store: str });
+    renderWithProviders(<Products />, { path: '/', store });
   
     const removeButton = await screen.findAllByRole('button', {name: 'Remove from cart'});
     fireEvent.click(removeButton[0]);
@@ -120,7 +120,7 @@ describe('Home page', () => {
     expect(await screen.findByRole('img')).toBeInTheDocument();
   });
 
-  test('Vertival card redirection', async () => {
+  test('Vertical card redirection', async () => {
     renderWithProviders(<Products />, { path: '/' });
 
     let verticalCard = await screen.findAllByTestId('vertical-card');

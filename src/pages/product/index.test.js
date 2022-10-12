@@ -170,26 +170,24 @@ describe('Product page', () => {
   test('In the cart', async () => {
     const store = setupStore();
     await store.dispatch(fetchProducts());
-    await store.dispatch(addToCart({...product, quantity: 2}));
+    store.dispatch(addToCart({ ...product, quantity: 2 }));
     renderWithProviders(<Product />, { path: '/product/100', store });
     
     const productPageSelectBox = await screen.findByRole('combobox');
-    // screen.debug()
     expect(productPageSelectBox).toBeInTheDocument();
     expect(productPageSelectBox.value).toBe('2');
 
     const productPageButtonElement = await screen.findByText(/Remove from cart/i);
     expect(productPageButtonElement).toBeInTheDocument();
-    // screen.debug()
 
   });
 
   test('Change quantity', async () => {
-    const str = setupStore();
-    await str.dispatch(fetchProducts());
-    await str.dispatch(addToCart({...product}));
+    const store = setupStore();
+    await store.dispatch(fetchProducts());
+    store.dispatch(addToCart({...product}));
     
-    renderWithProviders(<Product />, { path: '/product/100', store: str });
+    renderWithProviders(<Product />, { path: '/product/100', store });
 
     let totalProduct = await screen.findByTestId('total');
     expect(totalProduct).toBeInTheDocument();
@@ -198,8 +196,7 @@ describe('Product page', () => {
     const select = screen.getByTestId('select');
     expect(select.value).toBe("2");
     
-    fireEvent.click(select, { target: { value: 1 } });
-    fireEvent(select, new MouseEvent('change', {bubbles: true, cancelable: true, target: { value: 1 }}));
+    fireEvent.change(select, { target: { value: 1 } });
 
     const options = screen.getAllByTestId('option');
     expect(options[0].selected).toBeTruthy();
@@ -221,7 +218,6 @@ describe('Product page', () => {
     
     const select = screen.getByTestId('select');
     fireEvent.click(select, { target: { value: 2 } });
-    fireEvent(select, new MouseEvent('change', {bubbles: true, cancelable: true, target: { value: 2 }}));
 
     const options = screen.getAllByTestId('option');
     expect(options[0].selected).toBeFalsy();
@@ -241,11 +237,11 @@ describe('Product page', () => {
   });
 
   test('Remove from cart', async () => {  
-    const str = setupStore();
-    await str.dispatch(fetchProducts());
-    await str.dispatch(addToCart({...product}));
+    const store = setupStore();
+    await store.dispatch(fetchProducts());
+    store.dispatch(addToCart({ ...product }));
     
-    renderWithProviders(<Product />, { path: '/product/100', store: str });
+    renderWithProviders(<Product />, { path: '/product/100', store });
 
     const removeButton = await screen.findByRole('button', {name: 'Remove from cart'});
     fireEvent.click(removeButton);

@@ -227,7 +227,7 @@ describe('Cart page', () => {
 
     const select = screen.getByTestId('select');
     
-    fireEvent(select, new MouseEvent('change', {bubbles: true, cancelable: true, target: { value: 1 }}))
+    fireEvent.change(select, { target: { value: 1 } });
     
     totalProduct = await screen.findByTestId('total-products');
     expect(totalProduct).toBeInTheDocument();
