@@ -6,7 +6,7 @@ export const  truncateString = ( str, n, useWordBoundary ) => {
     : subString) + "&hellip;";
 };
   
-export const getPercentage = (price, oldPrice) => {
+export const getPercentage = (price, oldPrice = 0) => {
   return 100 - Math.round((price * 100) / oldPrice);
 }
   

@@ -20,7 +20,6 @@ const Product = () => {
     const dispatch = useAppDispatch();
 
     const [currentProduct, setCurrentProduct] = useState();
-    const [discount, setDiscount] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [isInTheCart, setIsInTheCart] = useState(false);
 
@@ -28,9 +27,6 @@ const Product = () => {
         const [selectedProduct] = products.filter((product) => {
             return product.id === Number(id);
         });
-        if (selectedProduct && selectedProduct.price.value && selectedProduct.price.oldValue !== undefined) {
-            setDiscount(getPercentage(selectedProduct.price.value, selectedProduct.price.oldValue));
-        }
         setCurrentProduct(selectedProduct);
     }, [id, products]);
 
@@ -56,7 +52,6 @@ const Product = () => {
     }
 
     const handleAddToCart = () => {
-        // isInTheCart && dispatch(removeFromCart(currentProduct));
         const product = {...currentProduct, quantity};
         setCurrentProduct(product);
         dispatch(addToCart(product));
@@ -80,7 +75,7 @@ const Product = () => {
             {currentProduct && 
                 <div className="product-container">
                     <div className="product-image">
-                        <DiscountDisplay discount={discount} />
+                        <DiscountDisplay discount={getPercentage(currentProduct.price.value, currentProduct.price.oldValue)} />
                         <img src={currentProduct.imageURL} alt={currentProduct.imageAlt} />
                     </div>
                     <div className="product-description">
