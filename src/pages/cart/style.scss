@@ -1,6 +1,6 @@
 @use '../../style/mainStyle.scss' as mainStyle;
 
-#card-container {
+#cart-container {
     max-Width: 1000px;
     margin: 60px auto;
     .products-list {
@@ -102,6 +102,7 @@
     .action-container {
         button {
             margin-left: auto;
+            margin-right: 10px;
         }
     }
     .free-shipping {

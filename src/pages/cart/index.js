@@ -35,7 +35,7 @@ const Cart = () => {
     return (
         <>
         {cartList.length === 0 ? <h3 className="empty-cart">Empty cart</h3> :
-            <section id='card-container'>
+            <section id='cart-container'>
                 <div className="products-list">
                     <table>
                         <tbody>
