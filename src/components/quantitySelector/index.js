@@ -2,7 +2,7 @@ import './style.scss';
 
 import {useEffect, useRef} from 'react';
 
-const QuantitySelector = ({quantity, handleChange, initialQuantity}) => {
+const QuantitySelector = ({quantity, handleChange, initialQuantity = 1}) => {
     const selectRef = useRef(initialQuantity);
 
     useEffect(() => {
