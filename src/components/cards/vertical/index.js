@@ -9,6 +9,7 @@ import PriceDisplay from '../../display/price';
 import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import parse from 'html-react-parser';
 
+let count = 0;
 const VerticalCard = ({
         product,
         goToProductPageHandler, 
@@ -17,6 +18,7 @@ const VerticalCard = ({
         isInTheCart
     }) => {
 
+    console.log("rendered vCard: ", count++)
     return (
         <div id="vertical-card"  onClick={()=>{goToProductPageHandler()}} data-testid="vertical-card">
             <div className="card-img">

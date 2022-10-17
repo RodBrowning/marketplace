@@ -9,6 +9,7 @@ import VerticalCard from '../../components/cards/vertical';
 import { shuffleArray } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 
+let count = 0;
 const Products = () => {
     const { products, loading, isSuccess, message } = useAppSelector((state) => state.products);
     const cartList = useAppSelector((state) => state.cart.list);
@@ -23,6 +24,7 @@ const Products = () => {
         return cartList.some((cartProduct) => { return cartProduct.id === product.id })
     }
 
+    console.log("rendered products: ",count++);
     return (
         <>
             {loading && !isSuccess && <h1 className='loading-message'>{message}</h1>}
