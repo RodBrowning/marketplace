@@ -34,12 +34,7 @@ const Products = () => {
                         {newestProducts.map((product) => {
                             return <HorizontalCard
                                 key={product.id}
-                                brand={product.brand}
-                                title={product.title}
-                                image={product.imageURL}
-                                imageAlt={product.imageAlt}
-                                price={product.price.value}
-                                currencyInfo={product.price.currencyInfo}
+                                product={product}
                                 goToProductPageHandler={() => { navigate(`/product/${product.id}`) }}
                             />
                         })}
@@ -54,15 +49,7 @@ const Products = () => {
                             products.map((product) => {
                                 return <VerticalCard
                                     key={product.id}
-                                    brand={product.brand}
-                                    title={product.title}
-                                    image={product.imageURL}
-                                    imgAlt={product.imageAlt}
-                                    price={product.price.value}
-                                    oldPrice={product.price.oldValue}
-                                    currencyInfo={product.price.currencyInfo}
-                                    shortDesc={product.description}
-                                    shipping={product.freeShipping}
+                                    product={product}
                                     goToProductPageHandler={() => { navigate(`/product/${product.id}`) }}
                                     handleAddToCart={() => { dispatch(addToCart({ ...product })) }}
                                     handleRemoveFromCart={() => { dispatch(removeFromCart(product)) }}

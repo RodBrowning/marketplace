@@ -10,33 +10,25 @@ import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import parse from 'html-react-parser';
 
 const VerticalCard = ({
-        brand, 
-        title, 
-        image, 
-        imgAlt, 
-        price, 
-        oldPrice, 
-        currencyInfo, 
-        shortDesc, 
-        shipping, 
+        product,
         goToProductPageHandler, 
         handleAddToCart, 
         handleRemoveFromCart, 
         isInTheCart
     }) => {
-    
+
     return (
         <div id="vertical-card"  onClick={()=>{goToProductPageHandler()}} data-testid="vertical-card">
             <div className="card-img">
-                <DiscountDisplay discount={getPercentage(price, oldPrice)} />
-                <img src={image} alt={imgAlt} />
+                <DiscountDisplay discount={getPercentage(product.price.value, product.price.oldValue)} />
+                <img src={product.imageURL} alt={product.imageAlt} />
             </div>
             <div className="card-body">
-                <h6 className="brand">{brand}</h6>
-                <h4 className="title">{title}</h4>
-                <PriceDisplay price={price} oldPrice={oldPrice} currencyInfo={currencyInfo}/>
-                <p className="short-desc">{parse(truncateString(shortDesc, 120, true))}</p>
-                {shipping && <h6 className="shipping">Free Shipping</h6>}
+                <h6 className="brand">{product.brand}</h6>
+                <h4 className="title">{product.title}</h4>
+                <PriceDisplay price={product.price.value} oldPrice={product.price.oldValue} currencyInfo={product.price.currencyInfo}/>
+                <p className="short-desc">{parse(truncateString(product.description, 120, true))}</p>
+                {product.freeShipping && <h6 className="shipping">Free Shipping</h6>}
                 {!isInTheCart &&
                     <AddCartButton buttonAction={handleAddToCart} />
                 }

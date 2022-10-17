@@ -3,17 +3,17 @@ import './style-mobile.scss';
 
 import { numToCurrency } from '../../../utils/utils';
 
-const HorizontalCard = ({brand, title, image, imageAlt, price, currencyInfo, goToProductPageHandler}) => {
+const HorizontalCard = ({product, goToProductPageHandler}) => {
     return (
         <div id='horizontal-card' onClick={()=>{goToProductPageHandler()}} data-testid="horizontal-card">
             <div className="description">
-                <h6 className="brand">{brand}</h6>
-                <h3 className="title">{title}</h3>
-                <h6 className="price">Price <span>{numToCurrency(price, currencyInfo)}</span></h6>
+                <h6 className="brand">{product.brand}</h6>
+                <h3 className="title">{product.title}</h3>
+                <h6 className="price">Price <span>{numToCurrency(product.price.value, product.price.currencyInfo)}</span></h6>
                 <button className='action-btn'><span>Shop now</span></button>
             </div>
             <div className="image">
-                <img src={image} alt={imageAlt} />
+                <img src={product.imageURL} alt={product.imageAlt} />
             </div>
         </div>
     );
