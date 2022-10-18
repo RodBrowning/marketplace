@@ -1,11 +1,36 @@
-import { render, screen } from '@testing-library/react';
-import user from '@testing-library/user-event';
 import VerticalCard from './index';
+import { addToCart } from '../../../features/cart/cartSlice';
+import { renderComponentWithProviders } from '../../../utils/test-utils';
+import { screen } from '@testing-library/react';
+import { setupStore } from '../../../app/store';
 import testImage from '../testImage.jpg';
 
 describe('Vertical card', () => {
   test('Complete', () => {
-    render(<VerticalCard brand="Brand" title="T-Shirt" image={testImage} price={15} oldPrice={18} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} shortDesc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro." shipping={true} />);
+    const product = 
+    {
+      id: 100,
+      brand: "Brand",
+      title: "T-Shirt",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+      freeShipping: true,
+      newest: true,
+      price: {
+          value: 15,
+          oldValue: 18,
+          shipping: 2,
+          currencyInfo: {
+              locale: "en-GB",
+              currencyCode: "GBP"
+          }
+      },
+      imageURL: testImage,
+      imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+      availableQuantity: 3,
+      quantity: 2
+      }
+    ;
+    renderComponentWithProviders(<VerticalCard product={product} />);
   
       const verticalCardDiscount = screen.queryByText('-17%');
       expect(verticalCardDiscount).toBeInTheDocument();
@@ -30,7 +55,29 @@ describe('Vertical card', () => {
   });
 
   test('Without discount', () => {
-    render(<VerticalCard brand="Brand" title="T-Shirt" image={testImage} price={15}  currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} shortDesc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro." shipping={true} />);
+    const product = 
+      {
+        id: 100,
+        brand: "Brand",
+        title: "T-Shirt",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+        freeShipping: true,
+        newest: true,
+        price: {
+            value: 15,
+            shipping: 2,
+            currencyInfo: {
+                locale: "en-GB",
+                currencyCode: "GBP"
+            }
+        },
+        imageURL: testImage,
+        imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+        availableQuantity: 3,
+        quantity: 2
+        }
+      ;
+      renderComponentWithProviders(<VerticalCard product={product} />);
   
       const verticalCardDiscount = screen.queryByText(/-0%/i);
       expect(verticalCardDiscount).not.toBeInTheDocument();
@@ -55,7 +102,29 @@ describe('Vertical card', () => {
   });
 
   test('Without free shipping', () => {
-    render(<VerticalCard brand="Brand" title="T-Shirt" image={testImage} price={15}  currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} shortDesc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro." shipping={false} />);
+    const product = 
+      {
+        id: 100,
+        brand: "Brand",
+        title: "T-Shirt",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+        freeShipping: false,
+        newest: true,
+        price: {
+            value: 15,
+            shipping: 2,
+            currencyInfo: {
+                locale: "en-GB",
+                currencyCode: "GBP"
+            }
+        },
+        imageURL: testImage,
+        imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+        availableQuantity: 3,
+        quantity: 2
+        }
+      ;
+      renderComponentWithProviders(<VerticalCard product={product} />);
   
       const verticalCardDiscount = screen.queryByText(/-0%/i);
       expect(verticalCardDiscount).not.toBeInTheDocument();
@@ -79,25 +148,34 @@ describe('Vertical card', () => {
       expect(verticalCardShortDescription).toBeInTheDocument();
   });
   
-  test('Should call function hadler when click', async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
-    user.setup();
-    
-    render(<VerticalCard brand="Brand" title="T-Shirt" image={testImage} price={15} oldPrice={18} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} shortDesc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro." shipping={true} goToProductPageHandler={() => alert('ok')} />);
-
-    const cardElement = screen.getByTestId('vertical-card');
-    expect(cardElement).toBeInTheDocument();
-
-    await user.click(cardElement);
-    expect(window.alert).toBeCalled();
-  });
-
-  test('Add cart button', async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
-    user.setup();
-    
-    render(<VerticalCard brand="Brand" title="T-Shirt" image={testImage} price={15} oldPrice={18} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} shortDesc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro." shipping={true} goToProductPageHandler={() => alert('ok')} isInTheCart={true} />);
-    
+  test('Should show remove from cart button', async () => {
+    const product = 
+      {
+        id: 100,
+        brand: "Brand",
+        title: "T-Shirt",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+        freeShipping: false,
+        newest: true,
+        price: {
+            value: 15,
+            oldPrice: 18,
+            shipping: 2,
+            currencyInfo: {
+                locale: "en-GB",
+                currencyCode: "GBP"
+            }
+        },
+        imageURL: testImage,
+        imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+        availableQuantity: 3,
+        quantity: 2
+        }
+      ;
+    const store = setupStore();
+    store.dispatch(addToCart({...product}));
+    renderComponentWithProviders(<VerticalCard product={product} />, {store});
+        
     const removeCartButton = screen.getByText('Remove from cart');
     expect(removeCartButton).toBeInTheDocument();
   });

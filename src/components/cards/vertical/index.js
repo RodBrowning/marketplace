@@ -1,7 +1,9 @@
 import './style.scss';
 import './style-mobile.scss';
 
+import { addToCart, removeFromCart } from '../../../features/cart/cartSlice';
 import { getPercentage, truncateString } from '../../../utils/utils';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 import AddCartButton from '../../button/addCart/addCartButton';
 import DiscountDisplay from '../../display/discount';
@@ -9,18 +11,22 @@ import PriceDisplay from '../../display/price';
 import RemoveCartButton from '../../button/removeCart/removeCartButton';
 import parse from 'html-react-parser';
 
-let count = 0;
 const VerticalCard = ({
-        product,
-        goToProductPageHandler, 
-        handleAddToCart, 
-        handleRemoveFromCart, 
-        isInTheCart
+        product
     }) => {
+    const cartList = useAppSelector((state) => state.cart.list);
+    const isInTheCart = cartList.some((cartProduct) => cartProduct.id === product.id );
+    const dispatch = useAppDispatch();
 
-    console.log("rendered vCard: ", count++)
+    const handleAdd = () => {
+        dispatch(addToCart({ ...product }));
+    }
+    const handleRemove = () => {
+        dispatch(removeFromCart(product));
+    }
+    
     return (
-        <div id="vertical-card"  onClick={()=>{goToProductPageHandler()}} data-testid="vertical-card">
+        <div id="vertical-card" data-testid="vertical-card">
             <div className="card-img">
                 <DiscountDisplay discount={getPercentage(product.price.value, product.price.oldValue)} />
                 <img src={product.imageURL} alt={product.imageAlt} />
@@ -32,10 +38,10 @@ const VerticalCard = ({
                 <p className="short-desc">{parse(truncateString(product.description, 120, true))}</p>
                 {product.freeShipping && <h6 className="shipping">Free Shipping</h6>}
                 {!isInTheCart &&
-                    <AddCartButton buttonAction={handleAddToCart} />
+                    <AddCartButton buttonAction={handleAdd} />
                 }
                 {isInTheCart &&
-                    <RemoveCartButton buttonAction={handleRemoveFromCart} />
+                    <RemoveCartButton buttonAction={handleRemove} />
                 }
             </div>
         </div>

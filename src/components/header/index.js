@@ -1,13 +1,14 @@
 import './style.scss';
 import './style-mobile.scss';
 
-import { NavLink } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
+
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../app/hooks';
 
 const Header = () => {
     const cartList = useAppSelector((state) => state.cart.list);
-    const cartCountRef = useRef(0)
+    const cartCountRef = useRef(0);
 
     useEffect(() => {
         let timeout;

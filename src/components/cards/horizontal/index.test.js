@@ -1,11 +1,35 @@
 import { render, screen } from '@testing-library/react';
-import user from '@testing-library/user-event';
+
 import HorizontalCard from './index';
+import { renderWithProviders } from '../../../utils/test-utils';
 import testImage from '../testImage.jpg';
 
 describe('Horizontal card', () => {
   test('Complete', () => {
-    render(<HorizontalCard brand="Brand" title="T-Shirt" image={testImage} price={15} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} />);
+    const product = 
+    {
+      id: 100,
+      brand: "Brand",
+      title: "T-Shirt",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis consectetur adipisicing elit. Quidem blanditiis porro.",
+      freeShipping: true,
+      newest: true,
+      price: {
+          value: 15,
+          oldValue: 18,
+          shipping: 2,
+          currencyInfo: {
+              locale: "en-GB",
+              currencyCode: "GBP"
+          }
+      },
+      imageURL: testImage,
+      imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+      availableQuantity: 3,
+      quantity: 2
+      }
+    ;
+    render(<HorizontalCard product={product} />);
           
       const horizontalCardBrand = screen.getByRole('heading', {level: 6, name: 'Brand'});
       expect(horizontalCardBrand).toBeInTheDocument();
@@ -24,14 +48,4 @@ describe('Horizontal card', () => {
   
   });
   
-  test('Should call function hadler when click', async () => {
-    jest.spyOn(window, 'alert').mockImplementation(() => {});
-    user.setup();
-    render(<HorizontalCard brand="Brand" title="T-Shirt" image={testImage} price={15} currencyInfo={{locale: "en-GB", currencyCode: "GBP"}} goToProductPageHandler={() => alert('ok')}/>);
-      const cardElement = screen.getByTestId('horizontal-card');
-      expect(cardElement).toBeInTheDocument();
-
-      await user.click(cardElement);
-      expect(window.alert).toBeCalled();
-  });
 });

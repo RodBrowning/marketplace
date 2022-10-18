@@ -100,12 +100,11 @@ describe('Home page', () => {
     expect(addButton[0]).toBeInTheDocument();
   
    });
-
   
    test('Vertical cart redirection', async () => {
     renderWithProviders(<Products />, { path: '/' });
 
-    let verticalCard = await screen.findAllByTestId('vertical-card');
+    let verticalCard = await screen.findAllByTestId('vertical-card-wrapper');
     expect(verticalCard[0]).toBeInTheDocument();
     await user.click(verticalCard[0]);
     expect(await screen.findByRole('img')).toBeInTheDocument();
@@ -114,18 +113,10 @@ describe('Home page', () => {
   test('Horizontal card redirection', async () => {
     renderWithProviders(<Products />, { path: '/' });
 
-    let horizontalCard = await screen.findAllByTestId('horizontal-card');
+    let horizontalCard = await screen.findAllByTestId('horizontal-card-wrapper');
     expect(horizontalCard[0]).toBeInTheDocument();
     await user.click(horizontalCard[0]);
     expect(await screen.findByRole('img')).toBeInTheDocument();
   });
 
-  test('Vertical card redirection', async () => {
-    renderWithProviders(<Products />, { path: '/' });
-
-    let verticalCard = await screen.findAllByTestId('vertical-card');
-    expect(verticalCard[0]).toBeInTheDocument();
-    await user.click(verticalCard[0]);
-    expect(await screen.findByRole('img')).toBeInTheDocument();
-  });
 });
