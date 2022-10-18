@@ -3,12 +3,11 @@
 import { rest } from 'msw';
 
 export const handlers = [
-    rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
+    rest.get('https://mock-products.herokuapp.com/products/GBP', (req, res, ctx) => {
         
         return res(
           ctx.status(200),
-          ctx.json({
-            "GBP": [
+          ctx.json([
                 {
                     "id": 100,
                     "brand": "brandA",
@@ -105,8 +104,8 @@ export const handlers = [
                     "imageURL": "https://mock-products.herokuapp.com/images/MattelSkip-Bo.jpg",
                     "imageAlt": "Lorem ipsum dolor sit amet consectetur.",
                     "availableQuantity": 7
-                }]
-          }),
-        )
+                }
+            ]),
+        );
       }),
   ];

@@ -56,7 +56,7 @@ describe('Home page', () => {
   
   test('Render with api error', async ()=>{
     server.use(
-      rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
+      rest.get('https://mock-products.herokuapp.com/products/GBP', (req, res, ctx) => {
         return res(ctx.status(500))
       })
     )
@@ -67,7 +67,7 @@ describe('Home page', () => {
 
   test('Render with loading text', async ()=>{
     server.use(
-      rest.get('https://mock-products.herokuapp.com/products/', (req, res, ctx) => {
+      rest.get('https://mock-products.herokuapp.com/products/GBP', (req, res, ctx) => {
         jest.setTimeout(1100);
         return res(res);
       })

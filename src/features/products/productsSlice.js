@@ -18,12 +18,12 @@ export const fetchProducts = createAsyncThunk(
     async (userId, thunkAPI) => {
       const response = await axios({
         method: "get",
-        url: "https://mock-products.herokuapp.com/products/"
+        url: "https://mock-products.herokuapp.com/products/GBP"
       }).catch(function (err) {
-        console.error("Some error occourred. Was not possible to receive the data. Please, contact the admin.   --->>>   ", err);
+        console.error("Some error occurred. Was not possible to receive the data. Please, contact the admin.   --->>>   ", err);
         throw err;
       });
-      return response.data.GBP;
+      return response.data;
     }
   );
   
