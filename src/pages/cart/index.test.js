@@ -25,7 +25,7 @@ const products = [
         }
     },
     imageURL: "https://mock-products.herokuapp.com/images/TomyPocketGames.jpg",
-    imageAlt: "Lorem ipsum dolor sit amet consectetur.",
+    imageAlt: "Lorem ipsum dolor sit amet consectetur0.",
     availableQuantity: 3,
     quantity: 2
   },{
@@ -113,11 +113,14 @@ describe('Cart page', () => {
     const numberColumn = await screen.findByText(/#/);
     expect(numberColumn).toBeInTheDocument();
   
-    const brandColumn = await screen.findByText(/Brand/, { timeout: 2000});
-    expect(brandColumn).toBeInTheDocument();
+    const imageColumn = await screen.findByText(/Image/, { timeout: 2000});
+    expect(imageColumn).toBeInTheDocument();
   
     const titileColumn = await screen.findByText(/Title/, { timeout: 2000});
     expect(titileColumn).toBeInTheDocument();
+
+    const brandColumn = await screen.findByText(/Brand/, { timeout: 2000});
+    expect(brandColumn).toBeInTheDocument();
   
     const quantityColumn = await screen.findByText(/Quantity/);
     expect(quantityColumn).toBeInTheDocument();
@@ -143,6 +146,9 @@ describe('Cart page', () => {
   
     let tableRows = await screen.findAllByTestId('table-row');
     expect(tableRows).toHaveLength(1);
+
+    const imgAlt = await screen.findByAltText(/Lorem ipsum dolor sit amet consectetur0./i);
+    expect(imgAlt).toBeInTheDocument();
 
     const brand = await screen.findByText(/brandA/i);
     expect(brand).toBeInTheDocument();

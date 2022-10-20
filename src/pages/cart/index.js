@@ -41,8 +41,9 @@ const Cart = () => {
                         <tbody>
                             <tr>
                                 <th>#</th>
-                                <th>Brand</th>
+                                <th>Image</th>
                                 <th>Title</th>
+                                <th>Brand</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th>Shipping</th>
@@ -84,8 +85,11 @@ const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) 
         <tr onClick={()=> navigate(`/product/${product.id}`)} 
         data-testid="table-row">
             <td>{String(index+1).padStart(2,"0")}</td>
-            <td>{product.brand}</td>
+            <td>
+                <img src={product.imageURL} alt={product.imageAlt} />
+            </td>
             <td>{product.title}</td>
+            <td>{product.brand}</td>
             <td onClick={(event)=> event.stopPropagation()} data-testid="not-propagate-click-event">
                 <QuantitySelector 
                     quantity={product.availableQuantity}
