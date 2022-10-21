@@ -15,7 +15,6 @@ const Cart = () => {
     const {list: cartList, total, totalProducts, totalShipping} = useAppSelector((state) => state.cart);
     const {productsCurrencyInfo} = useAppSelector((state) => state.products);
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     useEffect(()=>{
         let timeout;
@@ -26,11 +25,6 @@ const Cart = () => {
             clearTimeout(timeout);
         }
     },[navigate, cartList.length]);
-
-    const handleQuantityEvent = (product, quantity) => {
-        dispatch(removeFromCart({...product, quantity}));
-        dispatch(addToCart({...product, quantity}));
-    }
     
     return (
         <>
@@ -54,8 +48,6 @@ const Cart = () => {
                                     key={product.id}
                                     product={product} 
                                     index={index}
-                                    handleQuantityChange={(quantity) => {handleQuantityEvent(product ,quantity)}}
-                                    handleRemoveFromCart={()=>{dispatch(removeFromCart(product))}} 
                                 />)
                             })}
                         </tbody>
@@ -79,11 +71,17 @@ const Cart = () => {
     );
 };
 
-const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) => {
+const TableRow = ({product, index}) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    
+    const handleQuantityEvent = (product, quantity) => {
+        dispatch(removeFromCart(product));
+        dispatch(addToCart({...product, quantity}));
+    }
+
     return (
-        <tr onClick={()=> navigate(`/product/${product.id}`)} 
-        data-testid="table-row">
+        <tr onClick={()=> navigate(`/product/${product.id}`)} data-testid="table-row">
             <td>{String(index+1).padStart(2,"0")}</td>
             <td>
                 <img src={product.imageURL} alt={product.imageAlt} />
@@ -94,7 +92,7 @@ const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) 
                 <QuantitySelector 
                     quantity={product.availableQuantity}
                     initialQuantity={product.quantity} 
-                    handleChange={(quantity)=>{handleQuantityChange(quantity)}}
+                    handleChange={(quantity)=>{handleQuantityEvent(product, quantity)}}
                 />
             </td>
             <td>
@@ -106,7 +104,7 @@ const TableRow = ({product, index, handleQuantityChange, handleRemoveFromCart}) 
                 </td>
             <td onClick={(event)=> event.stopPropagation()} data-testid="not-propagate-click-event">
                 <RemoveCartShortButton
-                    buttonAction={handleRemoveFromCart} 
+                    buttonAction={()=> dispatch(removeFromCart(product))} 
                     disabled={false}
                     />
             </td>
