@@ -20,6 +20,7 @@ const Product = () => {
     const dispatch = useAppDispatch();
 
     const [currentProduct, setCurrentProduct] = useState();
+    const isInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct?.id});
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
@@ -30,18 +31,14 @@ const Product = () => {
     }, [id, products]);
 
     useEffect(() => {
-        if(currentProduct){
-            const isInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id});
-            if(isInTheCart) {
-                const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id});
-                setQuantity(cartProduct.quantity);
-            }
+        if(currentProduct && isInTheCart){
+            const cartProduct = cartList.find((cartProduct) => {return cartProduct.id === currentProduct.id});
+            setQuantity(cartProduct.quantity);
         }
-    }, [cartList, currentProduct]);
+    }, [currentProduct, isInTheCart, cartList]);
     
     const handleQuantityChange = (quantity) => {
         setQuantity(quantity);
-        const isInTheCart = cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id})
         if(!isInTheCart) return;
         
         dispatch(removeFromCart(currentProduct));
@@ -94,7 +91,7 @@ const Product = () => {
                         
                         <p className='total-label'>Total: <span data-testid='total'>{numToCurrency(getTotalToPay(), currentProduct.price.currencyInfo)}</span></p>
                         
-                        {cartList.some((cartProduct) => {return cartProduct.id === currentProduct.id}) ?  
+                        {isInTheCart ?  
                             <RemoveCartButton 
                                 buttonAction={handleRemoveFromCart}
                             /> : 
