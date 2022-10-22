@@ -1,6 +1,8 @@
 import './style.scss';
 import './style-mobile.scss';
 
+import { memo } from 'react';
+
 const AddCartButton = ({buttonAction, disabled = false}) => {
     const handleClick = (event) => {
         event.stopPropagation()
@@ -11,4 +13,4 @@ const AddCartButton = ({buttonAction, disabled = false}) => {
     )
 }
 
-export default AddCartButton;
+export default memo(AddCartButton);
