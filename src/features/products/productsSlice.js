@@ -18,7 +18,7 @@ export const fetchProducts = createAsyncThunk(
     async (userId, thunkAPI) => {
       const response = await axios({
         method: "get",
-        url: "https://mock-products.herokuapp.com/products/GBP"
+        url: "https://90shop-api.vercel.app/products/GBP"
       }).catch(function (err) {
         console.error("Some error occurred. Was not possible to receive the data. Please, contact the admin.   --->>>   ", err);
         throw err;
