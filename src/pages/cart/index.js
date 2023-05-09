@@ -53,7 +53,7 @@ const Cart = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan="4"></td>
+                                <td colSpan="5"></td>
                                 <td data-testid="total-products">{numToCurrency(totalProducts ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode })}</td>
                                 <td data-testid="total-shipping">{totalShipping > 0 ? numToCurrency(totalShipping ,{ locale: productsCurrencyInfo.locale, currencyCode: productsCurrencyInfo.currencyCode }) : <span className='free-shipping'>Free</span>}</td>
                             </tr>
