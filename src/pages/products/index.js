@@ -18,7 +18,7 @@ const Products = () => {
             {loading && !isSuccess && <h1 className='loading-message'>{message}</h1>}
             {!loading && !isSuccess && <h1 className='error-message'>{message}</h1>}
             {randomNewestProducts.length > 0 &&
-                <section id="products-section">
+                <section className="products-section">
                     <h1 className="section-title">Newest</h1>
                     <div className="products horizontal-cards" data-testid='Newest-container'>
                         {randomNewestProducts.map((product) => {
@@ -32,7 +32,7 @@ const Products = () => {
                 </section>
             }
             {products.length > 0 &&
-                <section id="products-section">
+                <section className="products-section">
                     <h1 className="section-title">90's Products</h1>
                     <div className="products vertical-cards" data-testid='products-container'>
                         {
