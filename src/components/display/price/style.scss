@@ -1,6 +1,6 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
 
-#price-display {
+.price-display {
     color: mainStyle.$black-50;
     span {
         &:first-child {
