@@ -1,6 +1,6 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
 
-#vertical-card {
+.vertical-card {
     display: flex;
     flex-direction: column;
     position: relative;
