@@ -23,7 +23,7 @@ const QuantitySelector = ({quantity, handleChange, initialQuantity = 1}) => {
     }
     
     return (
-        <select ref={selectRef} value={selectRef.current.value} defaultValue={initialQuantity} id="quantity-selector" data-testid="select" onChange={handleChangeEvent}>
+        <select ref={selectRef} value={selectRef.current.value} defaultValue={initialQuantity} className="quantity-selector" data-testid="select" onChange={handleChangeEvent}>
             {options(quantity)}
         </select>
     );
