@@ -1,6 +1,6 @@
 @use '../../../style/mainStyle.scss' as mainStyle;
 
-button#add-card-btn {
+button.add-card-btn {
     display: flex;
     align-items: center;
     gap: 16px;
