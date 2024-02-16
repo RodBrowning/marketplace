@@ -1,54 +1,52 @@
-@use '../../style/mainStyle.scss' as mainStyle;
+@use "../../style/mainStyle.scss" as mainStyle;
 
 $large: 1040px;
 $medium: 768px;
 $small: 425px;
 
 @media screen and (max-width: $large) {
-    #products-section {
-        .products {
-            grid-template-columns: repeat(3, 32.5%);
-            max-width: unset;
-            &.horizontal-cards {
-                max-width: unset;
-                margin: unset;
-                margin-top: 75px;
-            }
-        }
+  .products-section {
+    .products {
+      grid-template-columns: repeat(3, 32.5%);
+      max-width: unset;
+      &.horizontal-cards {
+        max-width: unset;
+        margin: unset;
+        margin-top: 75px;
+      }
     }
-
+  }
 }
 @media screen and (max-width: $medium) {
-    #products-section {
-        width: 100%;
-        .section-title {
-            margin-bottom: 0px;
-        }
-        .products {
-            &.horizontal-cards {
-                grid-template-columns: repeat(2, 47.5%);
-            }
-            &.vertical-cards {
-                grid-template-columns: repeat(2, 49%);
-    
-            }
-        }
-        .products {
-            button#add-card-btn, button#remove-card-btn {
-                max-width: 400px;
-                margin-left: auto;
-            }
-        }
+  .products-section {
+    width: 100%;
+    .section-title {
+      margin-bottom: 0px;
     }
+    .products {
+      &.horizontal-cards {
+        grid-template-columns: repeat(2, 47.5%);
+      }
+      &.vertical-cards {
+        grid-template-columns: repeat(2, 49%);
+      }
+    }
+    .products {
+      button#add-card-btn,
+      button#remove-card-btn {
+        max-width: 400px;
+        margin-left: auto;
+      }
+    }
+  }
 }
 @media screen and (max-width: $small) {
-    #products-section {
-        .products {
-            &.vertical-cards, &.horizontal-cards {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
+  .products-section {
+    .products {
+      &.vertical-cards,
+      &.horizontal-cards {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
-    
+  }
 }
-
